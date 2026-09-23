@@ -60,8 +60,9 @@ window.EL = (() => {
     },
   };
 
+  // Spanish unless the customer picked English with the ES/EN button (remembered on their device).
   let lang = 'es';
-  try { lang = localStorage.getItem('el_lang') || (navigator.language || 'es').slice(0, 2); } catch {}
+  try { lang = localStorage.getItem('el_lang_v2') || 'es'; } catch {}
   if (!STR[lang]) lang = 'es';
 
   const t = (k, vars = {}) => (STR[lang][k] ?? STR.es[k] ?? k).replace(/\{(\w+)\}/g, (_, v) => vars[v] ?? '');
@@ -74,7 +75,7 @@ window.EL = (() => {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
   };
-  function setLang(l) { lang = l; try { localStorage.setItem('el_lang', l); } catch {} document.documentElement.lang = l; }
+  function setLang(l) { lang = l; try { localStorage.setItem('el_lang_v2', l); } catch {} document.documentElement.lang = l; }
   document.documentElement.lang = lang;
 
   function toast(msg) {

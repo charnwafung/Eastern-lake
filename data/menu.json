@@ -376,63 +376,63 @@
      "num": "M1",
      "name": "Mini Combo Carne Ahumada",
      "short": "Carne Ahumada",
-     "price": 795
+     "price": 1025
     },
     {
      "id": "mc2",
      "num": "M2",
      "name": "Mini Combo Pollo al Ajillo",
      "short": "Pollo al Ajillo",
-     "price": 795
+     "price": 1025
     },
     {
      "id": "mc3",
      "num": "M3",
      "name": "Mini Combo Pollo Naranja",
      "short": "Pollo Naranja",
-     "price": 795
+     "price": 1025
     },
     {
      "id": "mc4",
      "num": "M4",
      "name": "Mini Combo Pollo Pepper",
      "short": "Pollo Pepper",
-     "price": 795
+     "price": 1025
     },
     {
      "id": "mc5",
      "num": "M5",
      "name": "Mini Combo Pollo Agridulce",
      "short": "Pollo Agridulce",
-     "price": 795
+     "price": 1025
     },
     {
      "id": "mc6",
      "num": "M6",
      "name": "Mini Combo Carne Frita",
      "short": "Carne Frita",
-     "price": 795
+     "price": 1025
     },
     {
      "id": "mc7",
      "num": "M7",
      "name": "Mini Combo Chuleta Frita",
      "short": "Chuleta Frita",
-     "price": 795
+     "price": 1025
     },
     {
      "id": "mc8",
      "num": "M8",
      "name": "Mini Combo Pollo Frito",
      "short": "Pollo Frito",
-     "price": 795
+     "price": 895
     },
     {
      "id": "mc9",
      "num": "M9",
      "name": "Mini Combo Pepper Steak",
      "short": "Pepper Steak",
-     "price": 795
+     "price": 1095
     }
    ]
   },
