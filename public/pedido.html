@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tu orden · Eastern Lake</title>
+  <meta name="theme-color" content="#0e3b33">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="hero" style="padding-bottom:18px">
+    <div class="hero-top">
+      <a class="brand" href="/">
+        <img src="/assets/logo-icon.png" alt="">
+        <div><div class="brand-name">Eastern Lake</div><div class="brand-sub">Restaurante Chino</div></div>
+      </a>
+      <button class="lang" id="langBtn" type="button">EN</button>
+    </div>
+  </header>
+  <div class="status-wrap" id="root"><div class="spinner" style="margin-top:40px"></div></div>
+
+  <script src="/common.js"></script>
+  <script>
+  (() => {
+    const { t, money, time, esc } = EL;
+    const id = new URLSearchParams(location.search).get('o');
+    const root = document.getElementById('root');
+    let last = null; let timer;
+
+    async function poll() {
+      clearTimeout(timer);
+      try {
+        const r = await fetch(`/api/order/${encodeURIComponent(id || '')}`);
+        if (r.status === 404) { root.innerHTML = `<div class="ticket"><div class="ticket-top"><h1>${t('notFound')}</h1><a class="btn" href="/" style="margin-top:16px">${t('backToMenu')}</a></div></div>`; return; }
+        last = await r.json();
+        render();
+      } catch {}
+      const s = last?.order?.status;
+      if (!['done', 'cancelled', 'expired'].includes(s)) timer = setTimeout(poll, s === 'pending' ? 2500 : 8000);
+    }
+
+    function render() {
+      const { order: o, restaurant: R } = last;
+      if (o.status !== 'pending') try { localStorage.removeItem('el_last_order_cart'); } catch {}
+      const steps = [['stepPaid', 1], ['stepKitchen', 1], ['stepReady', ['ready', 'done'].includes(o.status)]];
+      const cur = o.status === 'paid' ? 1 : o.status === 'ready' ? 2 : -1;
+      const head = {
+        pending: [t('confirming'), ''],
+        paid: [t('received'), t('receivedSub')],
+        ready: [t('ready'), t('readySub')],
+        done: [t('doneT'), t('doneSub')],
+        cancelled: [t('cancelledT'), `${t('cancelledSub')}${o.refunded ? ` ${t('refunded')}` : ''}`],
+        expired: [t('expiredT'), t('expiredSub')],
+      }[o.status];
+      document.title = `${o.number ? `#${o.number} · ` : ''}${head[0]}`;
+
+      let top = `<div class="ticket-top${o.status === 'ready' ? ' ready-flash' : ''}">`;
+      if (o.status === 'pending') top += `<div class="spinner"></div>`;
+      if (o.number) top += `<div class="kicker">${t('orderNo')}</div><div class="ordnum">${esc(o.number)}</div>`;
+      top += `<h1>${esc(head[0])}</h1><p>${esc(head[1])}</p>`;
+      if (['paid', 'ready', 'done'].includes(o.status)) {
+        top += `<ol class="steps">${steps.map(([k, d], i) => `<li class="${d ? 'done' : ''}${i === cur ? ' now' : ''}">${t(k)}</li>`).join('')}</ol>`;
+      }
+      top += '</div>';
+
+      let body = '<div class="ticket-body">';
+      if (['paid', 'ready'].includes(o.status) && o.pickupAt) {
+        body += `<div class="pickup-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1f5e52" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><div class="small">${o.pickupType === 'asap' ? t('pickupAround') : t('pickupAt')}</div><div class="big">${time(o.pickupAt)}</div></div></div>`;
+      }
+      if (o.status !== 'expired') {
+        body += `<ul class="lines" style="margin-bottom:8px">${o.items.map((l) => `<li class="line">
+          <div class="line-name"><span class="num">${l.qty}×</span>${esc(l.name)}</div><div class="line-price">${money(l.total)}</div>
+          ${l.options.length || l.note ? `<div class="line-opts">${esc([...l.options.map((x) => x.label), l.note && `“${l.note}”`].filter(Boolean).join(' · '))}</div>` : ''}</li>`).join('')}</ul>
+          <dl class="totals"><div><dt>${t('subtotal')}</dt><dd>${money(o.subtotal)}</dd></div><div><dt>IVU</dt><dd>${money(o.tax)}</dd></div>
+          <div class="grand"><dt>${o.status === 'pending' ? t('total') : t('paidTotal')}</dt><dd>${money(o.total)}</dd></div></dl>`;
+      }
+      body += `<div class="actions">
+        <a class="btn ghost" href="${esc(R.mapsUrl)}" target="_blank" rel="noopener">${t('directions')}</a>
+        <a class="btn ghost" href="tel:+1${R.phones[0].replace(/\D/g, '')}">${t('call')}</a>
+        <a class="btn" href="/" style="grid-column:1/-1">${o.status === 'expired' ? t('backToMenu') : t('newOrder')}</a></div>`;
+      if (['pending', 'paid'].includes(o.status)) body += `<p class="secure">${t('keepOpen')}</p>`;
+      body += `<p class="secure">${esc(R.address)}</p></div>`;
+      root.innerHTML = `<div class="ticket">${top}${body}</div>`;
+    }
+
+    const lb = document.getElementById('langBtn');
+    lb.textContent = EL.lang === 'es' ? 'EN' : 'ES';
+    lb.onclick = () => { EL.setLang(EL.lang === 'es' ? 'en' : 'es'); lb.textContent = EL.lang === 'es' ? 'EN' : 'ES'; if (last) render(); };
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) poll(); });
+    poll();
+  })();
+  </script>
+</body>
+</html>

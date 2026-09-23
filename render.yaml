@@ -1,0 +1,32 @@
+# One-click deploy on Render (https://render.com): New → Blueprint → pick this repo.
+# The Starter plan + a small disk is needed so orders survive restarts (free instances sleep and wipe their files).
+services:
+  - type: web
+    name: eastern-lake
+    runtime: node
+    plan: starter
+    region: virginia
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /healthz
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_DIR
+        value: /var/data
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: KITCHEN_PIN
+        sync: false
+      - key: PUBLIC_URL
+        sync: false

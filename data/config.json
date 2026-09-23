@@ -1,0 +1,27 @@
+{
+  "restaurant": {
+    "name": "Eastern Lake",
+    "tagline": "Restaurante Chino",
+    "address": "Centro Comercial Villa Andalucía, San Juan, Puerto Rico",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Eastern+Lake+Restaurante+Chino+Villa+Andalucia+San+Juan+PR",
+    "phones": ["787-292-0920", "787-292-7759"]
+  },
+  "timezone": "America/Puerto_Rico",
+  "hours": {
+    "_comment": "24h HH:MM, one entry per weekday (0 = Sunday). Use null for a closed day.",
+    "0": ["10:30", "21:45"],
+    "1": ["10:30", "21:45"],
+    "2": ["10:30", "21:45"],
+    "3": ["10:30", "21:45"],
+    "4": ["10:30", "21:45"],
+    "5": ["10:30", "21:45"],
+    "6": ["10:30", "21:45"]
+  },
+  "lastOrderMinutesBeforeClose": 15,
+  "defaultPrepMinutes": 20,
+  "scheduleSlotMinutes": 15,
+  "taxRate": 0.07,
+  "taxLabel": "IVU 7%",
+  "maxQuantityPerLine": 20,
+  "currency": "usd"
+}

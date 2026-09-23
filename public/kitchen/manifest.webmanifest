@@ -1,0 +1,11 @@
+{
+  "name": "Eastern Lake Cocina",
+  "short_name": "Cocina",
+  "start_url": "/kitchen/",
+  "scope": "/kitchen/",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0a2c26",
+  "theme_color": "#0a2c26",
+  "icons": [{ "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }, { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }]
+}

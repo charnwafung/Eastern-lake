@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cocina · Eastern Lake</title>
+  <meta name="theme-color" content="#0a2c26">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/kitchen/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/kitchen/kitchen.css">
+</head>
+<body>
+  <!-- Login -->
+  <section id="login" class="screen login" hidden>
+    <div class="login-card">
+      <img src="/assets/logo-icon.png" alt="" width="64" height="64">
+      <h1>Cocina</h1>
+      <p>Escribe el PIN</p>
+      <div class="pin-dots" id="pinDots"></div>
+      <div class="pinpad" id="pinpad"></div>
+      <div class="login-err" id="loginErr"></div>
+    </div>
+  </section>
+
+  <!-- Start overlay: one tap unlocks sound, keeps the screen on and reconnects the printer -->
+  <section id="start" class="screen start" hidden>
+    <button id="startBtn" class="start-btn" type="button">
+      <span class="start-title">Empezar turno</span>
+      <span class="start-sub">Toca para activar sonido, impresora y pantalla encendida</span>
+    </button>
+  </section>
+
+  <!-- Main board -->
+  <section id="board" class="screen" hidden>
+    <header class="topbar">
+      <div class="tb-brand"><img src="/assets/logo-icon.png" alt="" width="34" height="34"><span>Eastern Lake · Cocina</span></div>
+      <div class="tb-clock mono" id="clock"></div>
+      <button class="tb-chip" id="printerChip" type="button"></button>
+      <button class="tb-chip" id="onlineChip" type="button"></button>
+      <button class="tb-icon" id="menuBtn" type="button" aria-label="Ajustes">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </header>
+    <div class="alert" id="alert" hidden></div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="live" type="button">En curso <span class="badge" id="liveCount">0</span></button>
+      <button class="tab" data-tab="history" type="button">Historial</button>
+      <div class="today mono" id="today"></div>
+    </nav>
+    <main id="live" class="cols">
+      <section class="col"><h2>Nuevas / En cocina <span class="badge" id="newCount">0</span></h2><div class="cards" id="colNew"></div></section>
+      <section class="col"><h2>Listas para recoger <span class="badge" id="readyCount">0</span></h2><div class="cards" id="colReady"></div></section>
+    </main>
+    <main id="history" class="history" hidden></main>
+  </section>
+
+  <!-- Settings drawer -->
+  <dialog class="drawer" id="drawer">
+    <div class="drawer-head"><h2>Ajustes</h2><button class="tb-icon" data-close type="button" aria-label="Cerrar">✕</button></div>
+    <div class="drawer-body">
+      <section class="set">
+        <h3>Impresora</h3>
+        <p class="set-status" id="prnStatus"></p>
+        <div class="row">
+          <button class="kbtn" id="prnConnect" type="button">Conectar impresora USB</button>
+          <button class="kbtn ghost" id="prnTest" type="button">Imprimir prueba</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="autoPrint"><span>Imprimir automáticamente las órdenes nuevas</span></label>
+        <label class="toggle"><input type="checkbox" id="asciiPrint"><span>Sin acentos (si salen signos raros en el papel)</span></label>
+        <label class="field-inline">Copias por orden
+          <select id="copies"><option>1</option><option>2</option><option>3</option></select></label>
+        <button class="linkbtn" id="browserPrintTest" type="button">¿No tienes USB? Probar impresión por el navegador</button>
+      </section>
+      <section class="set">
+        <h3>Órdenes en línea</h3>
+        <label class="toggle"><input type="checkbox" id="pausedToggle"><span>Pausar órdenes en línea</span></label>
+        <label class="field-inline">Tiempo de preparación
+          <select id="prepSel"></select></label>
+        <label class="toggle"><input type="checkbox" id="soundToggle"><span>Sonido de orden nueva</span></label>
+        <button class="linkbtn" id="soundTest" type="button">Probar sonido</button>
+      </section>
+      <section class="set">
+        <h3>Agotados hoy</h3>
+        <p class="set-status">Lo que marques aquí no se puede ordenar en línea hasta que lo desmarques.</p>
+        <input class="search" id="soSearch" type="search" placeholder="Buscar plato o número">
+        <div id="soList" class="solist"></div>
+      </section>
+      <section class="set">
+        <button class="kbtn ghost danger" id="logout" type="button">Cerrar sesión en esta tableta</button>
+      </section>
+    </div>
+  </dialog>
+
+  <!-- Confirm / cancel dialog -->
+  <dialog class="modal" id="modal"><div id="modalBody"></div></dialog>
+
+  <!-- Browser-print fallback -->
+  <div id="printArea" aria-hidden="true"></div>
+
+  <script src="/kitchen/escpos.js"></script>
+  <script src="/kitchen/kitchen.js"></script>
+</body>
+</html>
