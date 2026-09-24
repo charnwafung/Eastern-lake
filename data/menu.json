@@ -376,63 +376,909 @@
      "num": "M1",
      "name": "Mini Combo Carne Ahumada",
      "short": "Carne Ahumada",
-     "price": 1025
+     "price": 1025,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc2",
      "num": "M2",
      "name": "Mini Combo Pollo al Ajillo",
      "short": "Pollo al Ajillo",
-     "price": 1025
+     "price": 1025,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc3",
      "num": "M3",
      "name": "Mini Combo Pollo Naranja",
      "short": "Pollo Naranja",
-     "price": 1025
+     "price": 1025,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc4",
      "num": "M4",
      "name": "Mini Combo Pollo Pepper",
      "short": "Pollo Pepper",
-     "price": 1025
+     "price": 1025,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc5",
      "num": "M5",
      "name": "Mini Combo Pollo Agridulce",
      "short": "Pollo Agridulce",
-     "price": 1025
+     "price": 1025,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc6",
      "num": "M6",
      "name": "Mini Combo Carne Frita",
      "short": "Carne Frita",
-     "price": 1025
+     "price": 1025,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc7",
      "num": "M7",
      "name": "Mini Combo Chuleta Frita",
      "short": "Chuleta Frita",
-     "price": 1025
+     "price": 1025,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc8",
      "num": "M8",
      "name": "Mini Combo Pollo Frito",
      "short": "Pollo Frito",
-     "price": 895
+     "price": 895,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "mc9",
      "num": "M9",
      "name": "Mini Combo Pepper Steak",
      "short": "Pepper Steak",
-     "price": 1095
+     "price": 1095,
+     "options": [
+      {
+       "id": "acomp",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Acompañante",
+        "en": "Side"
+       },
+       "choices": [
+        {
+         "id": "arroz-frito-papas",
+         "label": {
+          "es": "Arroz frito y papas",
+          "en": "Fried rice & fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-frito-sin-papas",
+         "label": {
+          "es": "Arroz frito sin papas",
+          "en": "Fried rice, no fries"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-papas",
+         "label": {
+          "es": "Solo papas",
+          "en": "Fries only"
+         },
+         "price": 0
+        },
+        {
+         "id": "arroz-blanco",
+         "label": {
+          "es": "Arroz blanco",
+          "en": "White rice"
+         },
+         "price": 0
+        },
+        {
+         "id": "solo-tostones",
+         "label": {
+          "es": "Solo tostones",
+          "en": "Tostones only"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Tostones",
+        "en": "Tostones"
+       },
+       "showIf": {
+        "group": "acomp",
+        "in": [
+         "solo-tostones"
+        ]
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones con ajo",
+          "en": "Tostones with garlic"
+         }
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Tostones sin ajo",
+          "en": "Tostones, no garlic"
+         }
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -458,26 +1304,302 @@
     {
      "id": "3",
      "num": 3,
-     "name": "Camarones Fritos",
+     "name": "Camarón Frito",
      "price": 275
     },
     {
      "id": "4",
      "num": 4,
      "name": "Tostone Grande",
-     "price": 845
+     "price": 845,
+     "options": [
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Ajo",
+        "en": "Garlic"
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajocant",
+       "type": "single",
+       "required": true,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "How much garlic"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "price": 0,
+         "summary": null
+        },
+        {
+         "id": "extra-050",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Extra ajo ($0.50)",
+          "en": "Extra garlic ($0.50)"
+         }
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100,
+         "summary": {
+          "es": "Extra ajo ($1.00)",
+          "en": "Extra garlic ($1.00)"
+         }
+        },
+        {
+         "id": "extra-150",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 150,
+         "summary": {
+          "es": "Extra ajo ($1.50)",
+          "en": "Extra garlic ($1.50)"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "5",
      "num": 5,
      "name": "Tostone Pequeño",
-     "price": 725
+     "price": 725,
+     "options": [
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Ajo",
+        "en": "Garlic"
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajocant",
+       "type": "single",
+       "required": true,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "How much garlic"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "price": 0,
+         "summary": null
+        },
+        {
+         "id": "extra-050",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Extra ajo ($0.50)",
+          "en": "Extra garlic ($0.50)"
+         }
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100,
+         "summary": {
+          "es": "Extra ajo ($1.00)",
+          "en": "Extra garlic ($1.00)"
+         }
+        },
+        {
+         "id": "extra-150",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 150,
+         "summary": {
+          "es": "Extra ajo ($1.50)",
+          "en": "Extra garlic ($1.50)"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "6",
      "num": 6,
      "name": "Mofongo",
-     "price": 845
+     "price": 845,
+     "options": [
+      {
+       "id": "ajo",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Ajo",
+        "en": "Garlic"
+       },
+       "choices": [
+        {
+         "id": "con-ajo",
+         "label": {
+          "es": "Con ajo",
+          "en": "With garlic"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajo",
+         "label": {
+          "es": "Sin ajo",
+          "en": "No garlic"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "ajocant",
+       "type": "single",
+       "required": true,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "How much garlic"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "price": 0,
+         "summary": null
+        },
+        {
+         "id": "extra-050",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Extra ajo ($0.50)",
+          "en": "Extra garlic ($0.50)"
+         }
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100,
+         "summary": {
+          "es": "Extra ajo ($1.00)",
+          "en": "Extra garlic ($1.00)"
+         }
+        },
+        {
+         "id": "extra-150",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 150,
+         "summary": {
+          "es": "Extra ajo ($1.50)",
+          "en": "Extra garlic ($1.50)"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "7",
@@ -586,35 +1708,900 @@
      "num": 21,
      "name": "Arroz Frito Pequeño",
      "price": 450,
-     "short": "Pequeño"
+     "short": "Pequeño",
+     "options": [
+      {
+       "id": "arrozmod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al arroz",
+        "en": "Rice changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jamon",
+         "label": {
+          "es": "Sin jamón",
+          "en": "No ham"
+         },
+         "summary": {
+          "es": "Arroz sin jamón",
+          "en": "Rice: no ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jamon"
+         ]
+        },
+        {
+         "id": "solo-jamon",
+         "label": {
+          "es": "Solo jamón",
+          "en": "Only ham"
+         },
+         "summary": {
+          "es": "Arroz solo jamón",
+          "en": "Rice: only ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jamon"
+         ]
+        },
+        {
+         "id": "sin-huevo",
+         "label": {
+          "es": "Sin huevo",
+          "en": "No egg"
+         },
+         "summary": {
+          "es": "Arroz sin huevo",
+          "en": "Rice: no egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-huevo"
+         ]
+        },
+        {
+         "id": "solo-huevo",
+         "label": {
+          "es": "Solo huevo",
+          "en": "Only egg"
+         },
+         "summary": {
+          "es": "Arroz solo huevo",
+          "en": "Rice: only egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-huevo"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "summary": {
+          "es": "Arroz sin cerdo",
+          "en": "Rice: no pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "summary": {
+          "es": "Arroz solo cerdo",
+          "en": "Rice: only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "summary": {
+          "es": "Arroz sin vegetal",
+          "en": "Rice: no vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "summary": {
+          "es": "Arroz solo vegetal",
+          "en": "Rice: only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-soya",
+         "label": {
+          "es": "Sin soya",
+          "en": "No soy sauce"
+         },
+         "summary": {
+          "es": "Arroz sin soya",
+          "en": "Rice: no soy sauce"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-sal",
+         "label": {
+          "es": "Sin sal",
+          "en": "No salt"
+         },
+         "summary": {
+          "es": "Arroz sin sal",
+          "en": "Rice: no salt"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajinomoto",
+         "label": {
+          "es": "Sin ajinomoto",
+          "en": "No MSG (ajinomoto)"
+         },
+         "summary": {
+          "es": "Arroz sin ajinomoto",
+          "en": "Rice: no MSG (ajinomoto)"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "22",
      "num": 22,
      "name": "Arroz Frito Regular",
      "price": 675,
-     "short": "Regular"
+     "short": "Regular",
+     "options": [
+      {
+       "id": "arrozmod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al arroz",
+        "en": "Rice changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jamon",
+         "label": {
+          "es": "Sin jamón",
+          "en": "No ham"
+         },
+         "summary": {
+          "es": "Arroz sin jamón",
+          "en": "Rice: no ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jamon"
+         ]
+        },
+        {
+         "id": "solo-jamon",
+         "label": {
+          "es": "Solo jamón",
+          "en": "Only ham"
+         },
+         "summary": {
+          "es": "Arroz solo jamón",
+          "en": "Rice: only ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jamon"
+         ]
+        },
+        {
+         "id": "sin-huevo",
+         "label": {
+          "es": "Sin huevo",
+          "en": "No egg"
+         },
+         "summary": {
+          "es": "Arroz sin huevo",
+          "en": "Rice: no egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-huevo"
+         ]
+        },
+        {
+         "id": "solo-huevo",
+         "label": {
+          "es": "Solo huevo",
+          "en": "Only egg"
+         },
+         "summary": {
+          "es": "Arroz solo huevo",
+          "en": "Rice: only egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-huevo"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "summary": {
+          "es": "Arroz sin cerdo",
+          "en": "Rice: no pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "summary": {
+          "es": "Arroz solo cerdo",
+          "en": "Rice: only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "summary": {
+          "es": "Arroz sin vegetal",
+          "en": "Rice: no vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "summary": {
+          "es": "Arroz solo vegetal",
+          "en": "Rice: only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-soya",
+         "label": {
+          "es": "Sin soya",
+          "en": "No soy sauce"
+         },
+         "summary": {
+          "es": "Arroz sin soya",
+          "en": "Rice: no soy sauce"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-sal",
+         "label": {
+          "es": "Sin sal",
+          "en": "No salt"
+         },
+         "summary": {
+          "es": "Arroz sin sal",
+          "en": "Rice: no salt"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajinomoto",
+         "label": {
+          "es": "Sin ajinomoto",
+          "en": "No MSG (ajinomoto)"
+         },
+         "summary": {
+          "es": "Arroz sin ajinomoto",
+          "en": "Rice: no MSG (ajinomoto)"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "23",
      "num": 23,
      "name": "Arroz Frito Grande",
      "price": 995,
-     "short": "Grande"
+     "short": "Grande",
+     "options": [
+      {
+       "id": "arrozmod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al arroz",
+        "en": "Rice changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jamon",
+         "label": {
+          "es": "Sin jamón",
+          "en": "No ham"
+         },
+         "summary": {
+          "es": "Arroz sin jamón",
+          "en": "Rice: no ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jamon"
+         ]
+        },
+        {
+         "id": "solo-jamon",
+         "label": {
+          "es": "Solo jamón",
+          "en": "Only ham"
+         },
+         "summary": {
+          "es": "Arroz solo jamón",
+          "en": "Rice: only ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jamon"
+         ]
+        },
+        {
+         "id": "sin-huevo",
+         "label": {
+          "es": "Sin huevo",
+          "en": "No egg"
+         },
+         "summary": {
+          "es": "Arroz sin huevo",
+          "en": "Rice: no egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-huevo"
+         ]
+        },
+        {
+         "id": "solo-huevo",
+         "label": {
+          "es": "Solo huevo",
+          "en": "Only egg"
+         },
+         "summary": {
+          "es": "Arroz solo huevo",
+          "en": "Rice: only egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-huevo"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "summary": {
+          "es": "Arroz sin cerdo",
+          "en": "Rice: no pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "summary": {
+          "es": "Arroz solo cerdo",
+          "en": "Rice: only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "summary": {
+          "es": "Arroz sin vegetal",
+          "en": "Rice: no vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "summary": {
+          "es": "Arroz solo vegetal",
+          "en": "Rice: only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-soya",
+         "label": {
+          "es": "Sin soya",
+          "en": "No soy sauce"
+         },
+         "summary": {
+          "es": "Arroz sin soya",
+          "en": "Rice: no soy sauce"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-sal",
+         "label": {
+          "es": "Sin sal",
+          "en": "No salt"
+         },
+         "summary": {
+          "es": "Arroz sin sal",
+          "en": "Rice: no salt"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajinomoto",
+         "label": {
+          "es": "Sin ajinomoto",
+          "en": "No MSG (ajinomoto)"
+         },
+         "summary": {
+          "es": "Arroz sin ajinomoto",
+          "en": "Rice: no MSG (ajinomoto)"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "24",
      "num": 24,
      "name": "Arroz Frito Medio Galón",
      "price": 1895,
-     "short": "Medio Galón"
+     "short": "Medio Galón",
+     "options": [
+      {
+       "id": "arrozmod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al arroz",
+        "en": "Rice changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jamon",
+         "label": {
+          "es": "Sin jamón",
+          "en": "No ham"
+         },
+         "summary": {
+          "es": "Arroz sin jamón",
+          "en": "Rice: no ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jamon"
+         ]
+        },
+        {
+         "id": "solo-jamon",
+         "label": {
+          "es": "Solo jamón",
+          "en": "Only ham"
+         },
+         "summary": {
+          "es": "Arroz solo jamón",
+          "en": "Rice: only ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jamon"
+         ]
+        },
+        {
+         "id": "sin-huevo",
+         "label": {
+          "es": "Sin huevo",
+          "en": "No egg"
+         },
+         "summary": {
+          "es": "Arroz sin huevo",
+          "en": "Rice: no egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-huevo"
+         ]
+        },
+        {
+         "id": "solo-huevo",
+         "label": {
+          "es": "Solo huevo",
+          "en": "Only egg"
+         },
+         "summary": {
+          "es": "Arroz solo huevo",
+          "en": "Rice: only egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-huevo"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "summary": {
+          "es": "Arroz sin cerdo",
+          "en": "Rice: no pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "summary": {
+          "es": "Arroz solo cerdo",
+          "en": "Rice: only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "summary": {
+          "es": "Arroz sin vegetal",
+          "en": "Rice: no vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "summary": {
+          "es": "Arroz solo vegetal",
+          "en": "Rice: only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-soya",
+         "label": {
+          "es": "Sin soya",
+          "en": "No soy sauce"
+         },
+         "summary": {
+          "es": "Arroz sin soya",
+          "en": "Rice: no soy sauce"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-sal",
+         "label": {
+          "es": "Sin sal",
+          "en": "No salt"
+         },
+         "summary": {
+          "es": "Arroz sin sal",
+          "en": "Rice: no salt"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajinomoto",
+         "label": {
+          "es": "Sin ajinomoto",
+          "en": "No MSG (ajinomoto)"
+         },
+         "summary": {
+          "es": "Arroz sin ajinomoto",
+          "en": "Rice: no MSG (ajinomoto)"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "25",
      "num": 25,
      "name": "Arroz Frito Familiar",
      "price": 3200,
-     "short": "Familiar"
+     "short": "Familiar",
+     "options": [
+      {
+       "id": "arrozmod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al arroz",
+        "en": "Rice changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jamon",
+         "label": {
+          "es": "Sin jamón",
+          "en": "No ham"
+         },
+         "summary": {
+          "es": "Arroz sin jamón",
+          "en": "Rice: no ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jamon"
+         ]
+        },
+        {
+         "id": "solo-jamon",
+         "label": {
+          "es": "Solo jamón",
+          "en": "Only ham"
+         },
+         "summary": {
+          "es": "Arroz solo jamón",
+          "en": "Rice: only ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jamon"
+         ]
+        },
+        {
+         "id": "sin-huevo",
+         "label": {
+          "es": "Sin huevo",
+          "en": "No egg"
+         },
+         "summary": {
+          "es": "Arroz sin huevo",
+          "en": "Rice: no egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-huevo"
+         ]
+        },
+        {
+         "id": "solo-huevo",
+         "label": {
+          "es": "Solo huevo",
+          "en": "Only egg"
+         },
+         "summary": {
+          "es": "Arroz solo huevo",
+          "en": "Rice: only egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-huevo"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "summary": {
+          "es": "Arroz sin cerdo",
+          "en": "Rice: no pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "summary": {
+          "es": "Arroz solo cerdo",
+          "en": "Rice: only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "summary": {
+          "es": "Arroz sin vegetal",
+          "en": "Rice: no vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "summary": {
+          "es": "Arroz solo vegetal",
+          "en": "Rice: only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-soya",
+         "label": {
+          "es": "Sin soya",
+          "en": "No soy sauce"
+         },
+         "summary": {
+          "es": "Arroz sin soya",
+          "en": "Rice: no soy sauce"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-sal",
+         "label": {
+          "es": "Sin sal",
+          "en": "No salt"
+         },
+         "summary": {
+          "es": "Arroz sin sal",
+          "en": "Rice: no salt"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-ajinomoto",
+         "label": {
+          "es": "Sin ajinomoto",
+          "en": "No MSG (ajinomoto)"
+         },
+         "summary": {
+          "es": "Arroz sin ajinomoto",
+          "en": "Rice: no MSG (ajinomoto)"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -630,42 +2617,324 @@
      "num": 26,
      "name": "Pollo con Papas 1 Presa",
      "price": 350,
-     "short": "1 Presa"
+     "short": "1 Presa",
+     "options": [
+      {
+       "id": "presas",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Presa",
+        "en": "Piece"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo",
+          "en": "Muslo"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Muslo",
+          "en": "Muslo"
+         }
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera",
+          "en": "Cadera"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Cadera",
+          "en": "Cadera"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "27",
      "num": 27,
      "name": "Pollo con Papas 2 Presas",
      "price": 565,
-     "short": "2 Presas"
+     "short": "2 Presas",
+     "options": [
+      {
+       "id": "presas",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Presas",
+        "en": "Pieces"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo",
+          "en": "Muslo"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Muslo",
+          "en": "Muslo"
+         }
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera",
+          "en": "Cadera"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Cadera",
+          "en": "Cadera"
+         }
+        },
+        {
+         "id": "mixto",
+         "label": {
+          "es": "Mixto",
+          "en": "Mixed"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Presas mixtas",
+          "en": "Mixed pieces"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "28",
      "num": 28,
      "name": "Pollo con Papas 3 Presas",
      "price": 690,
-     "short": "3 Presas"
+     "short": "3 Presas",
+     "options": [
+      {
+       "id": "presas",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Presas",
+        "en": "Pieces"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo",
+          "en": "Muslo"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Muslo",
+          "en": "Muslo"
+         }
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera",
+          "en": "Cadera"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Cadera",
+          "en": "Cadera"
+         }
+        },
+        {
+         "id": "mixto",
+         "label": {
+          "es": "Mixto",
+          "en": "Mixed"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Presas mixtas",
+          "en": "Mixed pieces"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "29",
      "num": 29,
      "name": "Pollo con Papas 5 Presas",
      "price": 1175,
-     "short": "5 Presas"
+     "short": "5 Presas",
+     "options": [
+      {
+       "id": "presas",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Presas",
+        "en": "Pieces"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo",
+          "en": "Muslo"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Muslo",
+          "en": "Muslo"
+         }
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera",
+          "en": "Cadera"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Cadera",
+          "en": "Cadera"
+         }
+        },
+        {
+         "id": "mixto",
+         "label": {
+          "es": "Mixto",
+          "en": "Mixed"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Presas mixtas",
+          "en": "Mixed pieces"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "30",
      "num": 30,
      "name": "Pollo con Papas 8 Presas",
      "price": 1575,
-     "short": "8 Presas"
+     "short": "8 Presas",
+     "options": [
+      {
+       "id": "presas",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Presas",
+        "en": "Pieces"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo",
+          "en": "Muslo"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Muslo",
+          "en": "Muslo"
+         }
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera",
+          "en": "Cadera"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Cadera",
+          "en": "Cadera"
+         }
+        },
+        {
+         "id": "mixto",
+         "label": {
+          "es": "Mixto",
+          "en": "Mixed"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Presas mixtas",
+          "en": "Mixed pieces"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "31",
      "num": 31,
      "name": "Pollo con Papas 10 Presas",
      "price": 1899,
-     "short": "10 Presas"
+     "short": "10 Presas",
+     "options": [
+      {
+       "id": "presas",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Presas",
+        "en": "Pieces"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo",
+          "en": "Muslo"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Muslo",
+          "en": "Muslo"
+         }
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera",
+          "en": "Cadera"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Cadera",
+          "en": "Cadera"
+         }
+        },
+        {
+         "id": "mixto",
+         "label": {
+          "es": "Mixto",
+          "en": "Mixed"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Presas mixtas",
+          "en": "Mixed pieces"
+         }
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -681,7 +2950,56 @@
      "num": 32,
      "name": "Pollo 2 Presas",
      "price": 1050,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsBefore": [
+      {
+       "id": "presas",
+       "type": "single",
+       "required": true,
+       "label": {
+        "es": "Presas",
+        "en": "Pieces"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo",
+          "en": "Muslo"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Muslo",
+          "en": "Muslo"
+         }
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera",
+          "en": "Cadera"
+         },
+         "price": 50,
+         "summary": {
+          "es": "Cadera",
+          "en": "Cadera"
+         }
+        },
+        {
+         "id": "mixto",
+         "label": {
+          "es": "Mixto",
+          "en": "Mixed"
+         },
+         "price": 0,
+         "summary": {
+          "es": "Presas mixtas",
+          "en": "Mixed pieces"
+         }
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "33",
@@ -693,23 +3011,114 @@
     {
      "id": "34",
      "num": 34,
-     "name": "Pollo con Pepper",
+     "name": "Pollo Pepper",
      "price": 1250,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "35",
      "num": 35,
      "name": "Pollo al Ajillo",
      "price": 1250,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "36",
      "num": 36,
      "name": "Pollo Agridulce",
      "price": 1250,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "37",
@@ -737,7 +3146,32 @@
      "num": 40,
      "name": "Pollo a la Plancha",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "41",
@@ -781,7 +3215,40 @@
      "num": 45,
      "name": "Cerdo Agridulce",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "46",
@@ -795,7 +3262,46 @@
      "num": 47,
      "name": "Carne Ahumada",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "salsa",
+       "type": "single",
+       "required": true,
+       "default": "regular",
+       "label": {
+        "es": "Salsa",
+        "en": "Sauce"
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Salsa regular",
+          "en": "Regular sauce"
+         },
+         "price": 0,
+         "summary": null
+        },
+        {
+         "id": "sin-salsa",
+         "label": {
+          "es": "Sin salsa",
+          "en": "No sauce"
+         },
+         "price": 0
+        },
+        {
+         "id": "extra-salsa",
+         "label": {
+          "es": "Extra salsa",
+          "en": "Extra sauce"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "48",
@@ -823,7 +3329,32 @@
      "num": 51,
      "name": "Carne Frita",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "52",
@@ -846,7 +3377,40 @@
      "num": 53,
      "name": "Pepper Steak",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "54",
@@ -925,7 +3489,32 @@
      "num": 63,
      "name": "Camarones al Ajillo",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "64",
@@ -939,7 +3528,40 @@
      "num": 65,
      "name": "Camarones Agridulce",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "66",
@@ -953,7 +3575,32 @@
      "num": 67,
      "name": "Filete de Pescado al Ajillo",
      "price": 1650,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "68",

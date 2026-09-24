@@ -13,8 +13,8 @@ const menu = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'menu.json'
 for (const c of menu.categories) for (const it of c.items) {
   if (it.optionSet) {
     if (!menu.optionSets?.[it.optionSet]) throw new Error(`menu.json: unknown optionSet "${it.optionSet}" on item ${it.id}`);
-    it.options = menu.optionSets[it.optionSet];
-    delete it.optionSet;
+    it.options = [...(it.optionsBefore || []), ...menu.optionSets[it.optionSet], ...(it.optionsAfter || [])];
+    delete it.optionSet; delete it.optionsBefore; delete it.optionsAfter;
   }
 }
 delete menu.optionSets;
