@@ -19,11 +19,16 @@
     <img class="logo" src="/assets/logo-icon.png" alt="Eastern Lake">
     <h1>Eastern Lake</h1>
     <div class="sub">Restaurante Chino</div>
+    <p class="phones"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span id="phones"><a href="tel:+17872920920">787-292-0920</a><i>·</i><a href="tel:+17872927759">787-292-7759</a></span></p>
+    <p class="pickup-ways"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 1 0 4 0M15 17a2 2 0 1 0 4 0M3 17v-5l2.5-5h11l3.5 5v5"/><path d="M3 12h18"/></svg><span id="pickupWays">Recogido disponible por Servi-Carro o en tienda</span></p>
     <a class="addr" id="addr" href="#" target="_blank" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
       <span>Centro Comercial Villa Andalucía, San Juan</span>
     </a>
-    <span class="pill" id="statusPill" hidden></span>
+    <div class="status" id="statusBox" hidden>
+      <span class="pill" id="statusPill"></span>
+      <p class="hours-line" id="hoursLine"></p>
+    </div>
     <div class="ctas">
       <a class="btn primary" href="/ordenar">
         <span class="t"><span id="orderLbl">Ordenar ahora</span><small id="orderSub">Para recoger</small></span>
@@ -37,16 +42,6 @@
     <p class="note" id="note">Servicarro y órdenes por teléfono disponibles</p>
   </section>
 
-  <section class="info">
-    <div class="card">
-      <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-      <div style="flex:1"><h3 id="hoursT">Horario</h3><div id="hours"></div></div>
-    </div>
-    <div class="card">
-      <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
-      <div><h3 id="callT">Llámanos</h3><div id="phones"></div></div>
-    </div>
-  </section>
   <footer class="home"><img src="/assets/logo-icon.png" alt="">Eastern Lake · Restaurante Chino</footer>
 
   <script src="/common.js"></script>
@@ -55,21 +50,19 @@
     const { t, time, sameDay, esc } = EL;
     const $ = (s) => document.querySelector(s);
     let data = null;
-    const DAYS = { es: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'], en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] };
     const hm = (s) => { const [h, m] = s.split(':').map(Number); const d = new Date(Date.UTC(2020, 0, 1, h + 4, m)); return time(d.toISOString()); };
 
     function render() {
       $('#langBtn').textContent = EL.lang === 'es' ? 'EN' : 'ES';
       $('#orderLbl').textContent = t('orderNow');
       $('#menuLbl').textContent = t('viewMenu'); $('#menuSub').textContent = t('viewMenuSub');
-      $('#note').textContent = t('servicarro'); $('#hoursT').textContent = t('hoursT'); $('#callT').textContent = t('callUs');
+      $('#note').textContent = t('servicarro'); $('#pickupWays').textContent = t('pickupWays');
       if (!data) return;
       const R = data.restaurant; const s = data.status;
       $('#addr').href = R.mapsUrl;
-      $('#phones').innerHTML = R.phones.map((p) => `<p class="mono">${esc(p)}</p>`).join('')
-        + `<div class="act"><a class="chip-link" href="tel:+1${R.phones[0].replace(/\D/g, '')}">${esc(t('call'))}</a></div>`;
+      $('#phones').innerHTML = R.phones.map((p) => `<a href="tel:+1${p.replace(/\D/g, '')}">${esc(p)}</a>`).join('<i>·</i>');
       // Status pill (same rules as the ordering page)
-      const pill = $('#statusPill'); pill.hidden = false; pill.className = 'pill';
+      const pill = $('#statusPill'); $('#statusBox').hidden = false; pill.className = 'pill';
       const now = new Date(s.now);
       const opens = (iso) => (sameDay(new Date(iso), now) ? t('opensAt', { t: time(iso) }) : t('opensTomorrow', { t: time(iso) }));
       if (s.paused) { pill.classList.add('closed'); pill.textContent = t('paused'); }
@@ -77,15 +70,16 @@
       else if (s.canOrder) { pill.classList.add('later'); pill.textContent = `${t('closed')} · ${opens(s.openAt)}`; }
       else { pill.classList.add('closed'); pill.textContent = s.nextOpen ? `${t('closed')} · ${opens(s.nextOpen)}` : t('closed'); }
       $('#orderSub').textContent = s.asap ? t('orderNowSub', { m: s.prepMinutes }) : t('orderLaterSub');
-      // Hours: one line when every day is the same, otherwise the week with today highlighted
+      // Hours under the status pill: one range when every day is the same, otherwise today's hours
       const H = data.hours; const keys = ['0', '1', '2', '3', '4', '5', '6'];
-      const same = keys.every((k) => JSON.stringify(H[k]) === JSON.stringify(H['0'])) && H['0'];
       const range = (h) => (h ? `${hm(h[0])} – ${hm(h[1])}` : t('closedToday'));
-      if (same) $('#hours').innerHTML = `<p><b>${esc(range(H['0']))}</b></p><p class="muted">${esc(t('everyDay'))}</p>`;
+      const same = keys.every((k) => JSON.stringify(H[k]) === JSON.stringify(H['0'])) && H['0'];
+      const hl = $('#hoursLine');
+      if (same) hl.innerHTML = `${esc(range(H['0']))} <span>· ${esc(t('everyDayShort'))}</span>`;
       else {
-        const today = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Puerto_Rico', weekday: 'short' }).format(now);
-        const ti = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(today);
-        $('#hours').innerHTML = `<div class="hours-list">${[1, 2, 3, 4, 5, 6, 0].map((d) => `<div class="${d === ti ? 'today' : ''}"><span>${DAYS[EL.lang][d]}</span><span>${esc(range(H[String(d)]))}</span></div>`).join('')}</div>`;
+        const wd = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Puerto_Rico', weekday: 'short' }).format(new Date(s.now));
+        const ti = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(wd);
+        hl.innerHTML = `<span>${esc(t('todayHours'))}:</span> ${esc(range(H[String(ti)]))}`;
       }
     }
     async function load() {

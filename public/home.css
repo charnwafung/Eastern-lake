@@ -36,7 +36,16 @@ button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-c
 .sub { font: 500 12px var(--mono); letter-spacing: .28em; text-transform: uppercase; color: var(--brass-light); margin-top: 12px; }
 .addr { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; font-size: 14.5px; color: rgba(246,241,231,.88); border-bottom: 1px dotted rgba(246,241,231,.45); padding-bottom: 2px; }
 .addr svg { color: var(--brass-light); flex: none; }
-.hero .pill { margin-top: 18px; }
+.hero .status { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 18px; padding: 10px 18px 11px; border-radius: 16px; background: rgba(246,241,231,.1); }
+.hero .status .pill { background: none; padding: 0; }
+.hours-line { font-size: 13.5px; color: rgba(246,241,231,.85); font-weight: 400; }
+.hours-line span { color: rgba(246,241,231,.65); font-weight: 400; }
+.phones { position: relative; display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font: 500 15px var(--mono); color: var(--ivory); }
+.phones svg { color: var(--brass-light); flex: none; }
+.phones a { border-bottom: 1px dotted rgba(246,241,231,.45); padding-bottom: 1px; }
+.phones i { font-style: normal; color: rgba(246,241,231,.5); margin: 0 8px; }
+.pickup-ways { position: relative; display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 14px; color: rgba(246,241,231,.85); }
+.pickup-ways svg { color: var(--brass-light); flex: none; }
 .ctas { position: relative; width: 100%; max-width: 420px; display: grid; gap: 12px; margin-top: auto; padding-top: 36px; }
 .btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; border-radius: 18px; padding: 0 22px; font-weight: 700; font-size: 19px; transition: transform .12s; }
 .btn:active { transform: scale(.98); }
