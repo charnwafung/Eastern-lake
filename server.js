@@ -105,7 +105,7 @@ app.get('/api/menu', (req, res) => {
   res.json({
     restaurant: config.restaurant, taxRate: config.taxRate, taxLabel: config.taxLabel,
     maxQty: config.maxQuantityPerLine, timezone: config.timezone,
-    categories: menu.categories, soldOut: soldOutIds(), status: status(),
+    categories: menu.categories, soldOut: soldOutIds(), status: status(), hours: config.hours,
   });
 });
 
@@ -167,7 +167,7 @@ app.post('/api/checkout', async (req, res) => {
       metadata: { order_id: id },
       payment_intent_data: { metadata: { order_id: id }, description: `Eastern Lake — ${customer.name}` },
       success_url: `${base}/pedido.html?o=${id}`,
-      cancel_url: `${base}/?pago=cancelado`,
+      cancel_url: `${base}/ordenar?pago=cancelado`,
       expires_at: Math.floor(Date.now() / 1000) + 35 * 60, // Stripe's minimum is 30 min
     });
     db.prepare('UPDATE orders SET stripe_session_id = ? WHERE id = ?').run(session.id, id);

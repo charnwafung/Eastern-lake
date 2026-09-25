@@ -28,7 +28,7 @@
     if (new URLSearchParams(location.search).get('pago') === 'cancelado') {
       if (!cart.length) { cart = store.get('el_last_order_cart', []).filter((l) => items.has(l.id)); saveCart(); renderMenu(); renderCartBar(); }
       toast(t('cancelled'));
-      history.replaceState(null, '', '/');
+      history.replaceState(null, '', '/ordenar');
       if (cart.length) openCart();
     }
     setInterval(refreshStatus, 60000);

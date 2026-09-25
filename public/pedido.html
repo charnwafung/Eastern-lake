@@ -37,7 +37,7 @@
       clearTimeout(timer);
       try {
         const r = await fetch(`/api/order/${encodeURIComponent(id || '')}`);
-        if (r.status === 404) { root.innerHTML = `<div class="ticket"><div class="ticket-top"><h1>${t('notFound')}</h1><a class="btn" href="/" style="margin-top:16px">${t('backToMenu')}</a></div></div>`; return; }
+        if (r.status === 404) { root.innerHTML = `<div class="ticket"><div class="ticket-top"><h1>${t('notFound')}</h1><a class="btn" href="/ordenar" style="margin-top:16px">${t('backToMenu')}</a></div></div>`; return; }
         last = await r.json();
         render();
       } catch {}
@@ -85,7 +85,7 @@
       body += `<div class="actions">
         <a class="btn ghost" href="${esc(R.mapsUrl)}" target="_blank" rel="noopener">${t('directions')}</a>
         <a class="btn ghost" href="tel:+1${R.phones[0].replace(/\D/g, '')}">${t('call')}</a>
-        <a class="btn" href="/" style="grid-column:1/-1">${o.status === 'expired' ? t('backToMenu') : t('newOrder')}</a></div>`;
+        <a class="btn" href="/ordenar" style="grid-column:1/-1">${o.status === 'expired' ? t('backToMenu') : t('newOrder')}</a></div>`;
       if (['pending', 'paid'].includes(o.status)) body += `<p class="secure">${t('keepOpen')}</p>`;
       body += `<p class="secure">${esc(R.address)}</p></div>`;
       root.innerHTML = `<div class="ticket">${top}${body}</div>`;

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Menú · Eastern Lake</title>
+  <meta name="description" content="Menú de Eastern Lake Restaurante Chino: aperitivos, sopas, arroz frito, combinaciones, lo mein y más.">
+  <meta name="theme-color" content="#0e3b33">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+</head>
+<body>
+  <header class="mtop">
+    <div class="mtop-row">
+      <a class="back" href="/" id="backBtn" aria-label="Volver"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></a>
+      <a class="mbrand" href="/"><img src="/assets/logo-icon.png" alt=""><b>Eastern Lake</b></a>
+      <button class="lang" id="langBtn" type="button" aria-label="Change language">EN</button>
+    </div>
+    <h1 id="title">Menú</h1>
+    <p id="subtitle">Precios no incluyen IVU · Para recoger en Villa Andalucía</p>
+  </header>
+  <nav class="mchips" id="chips" aria-label="Secciones"></nav>
+  <main class="mlist" id="menu"></main>
+  <div class="mcta"><a href="/ordenar"><span id="orderLbl">Ordenar ahora</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+
+  <script src="/common.js"></script>
+  <script>
+  (() => {
+    const { t, money, esc } = EL;
+    const $ = (s) => document.querySelector(s);
+    let data = null;
+    const noteFor = (id) => (id.startsWith('combo-') ? t('comboNote') : id === 'mini-combos' ? t('miniNote') : id === 'vegetales' ? t('vegNote') : '');
+
+    function render() {
+      $('#langBtn').textContent = EL.lang === 'es' ? 'EN' : 'ES';
+      $('#title').textContent = t('menuTitle'); $('#subtitle').textContent = t('menuSub'); $('#orderLbl').textContent = t('orderNow');
+      $('#backBtn').setAttribute('aria-label', t('back'));
+      if (!data) return;
+      const so = new Set(data.soldOut);
+      $('#chips').innerHTML = data.categories.map((c, i) => `<button type="button" data-cat="${c.id}" class="${i === 0 ? 'on' : ''}">${esc(c.name[EL.lang] || c.name.es)}</button>`).join('');
+      $('#menu').innerHTML = data.categories.map((c) => `<section id="cat-${c.id}"><h2>${esc(c.name[EL.lang] || c.name.es)}</h2>
+        ${noteFor(c.id) ? `<p class="desc">${esc(noteFor(c.id))}</p>` : ''}
+        <ul>${c.items.map((it) => `<li class="${so.has(it.id) ? 'out' : ''}"><span class="n">${it.num}</span><span class="nm">${esc(it.short || it.name)}</span><span class="dots"></span>
+          <span class="pr">${so.has(it.id) ? esc(t('soldOut')) : money(it.price)}</span></li>`).join('')}</ul></section>`).join('');
+      watch();
+    }
+
+    // Section buttons: jump to a section; highlight the one on screen.
+    let jumping = false; let io;
+    function setActive(id) {
+      const row = $('#chips');
+      row.querySelectorAll('button').forEach((b) => {
+        const on = b.dataset.cat === id; b.classList.toggle('on', on);
+        if (on) row.scrollTo({ left: Math.max(0, b.offsetLeft - (row.clientWidth - b.offsetWidth) / 2), behavior: 'smooth' });
+      });
+    }
+    $('#chips').addEventListener('click', (e) => {
+      const id = e.target.closest('[data-cat]')?.dataset.cat; if (!id) return;
+      const sec = document.getElementById(`cat-${id}`);
+      jumping = true; setActive(id);
+      window.scrollTo({ top: sec.getBoundingClientRect().top + scrollY - $('#chips').offsetHeight - 6, behavior: 'smooth' });
+      setTimeout(() => { jumping = false; }, 1200);
+    });
+    function watch() {
+      io?.disconnect();
+      io = new IntersectionObserver((es) => { if (jumping) return; es.forEach((e) => e.isIntersecting && setActive(e.target.id.slice(4))); }, { rootMargin: '-80px 0px -70% 0px' });
+      document.querySelectorAll('.mlist section').forEach((s) => io.observe(s));
+    }
+
+    async function load() { try { data = await (await fetch('/api/menu')).json(); } catch {} render(); }
+    $('#langBtn').onclick = () => { EL.setLang(EL.lang === 'es' ? 'en' : 'es'); render(); };
+    render(); load();
+  })();
+  </script>
+</body>
+</html>

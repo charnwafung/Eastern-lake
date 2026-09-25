@@ -2,6 +2,11 @@
 window.EL = (() => {
   const STR = {
     es: {
+      orderNow: 'Ordenar ahora', orderNowSub: 'Para recoger · listo en ~{m} min', orderLaterSub: 'Para recoger · programa tu orden',
+      viewMenu: 'Ver menú', viewMenuSub: 'Platos y precios', servicarro: 'Servicarro y órdenes por teléfono disponibles',
+      hoursT: 'Horario', everyDay: 'Todos los días, de lunes a domingo', todayHours: 'Hoy', closedToday: 'Cerrado hoy', callUs: 'Llámanos',
+      menuTitle: 'Menú', menuSub: 'Precios no incluyen IVU · Para recoger en Villa Andalucía', back: 'Volver',
+      comboNote: 'Con arroz y papas, arroz y tostones (+$2.50), o solo', miniNote: 'Con arroz frito, papas, arroz blanco o tostones', vegNote: 'Vegetales mixtos o brócoli',
       open: 'Abierto', closesAt: 'cierra {t}', closed: 'Cerrado', opensAt: 'abre {t}', opensTomorrow: 'abre mañana {t}',
       paused: 'Órdenes en línea en pausa', preorder: 'Abre a las {t} — puedes ordenar ahora para recoger más tarde.',
       closedNotice: 'Estamos cerrados ahora. Puedes ver el menú; las órdenes en línea abren {t}.', whenToday: 'hoy a las {t}', whenTomorrow: 'mañana a las {t}',
@@ -31,6 +36,11 @@ window.EL = (() => {
       paidTotal: 'Total pagado',
     },
     en: {
+      orderNow: 'Order now', orderNowSub: 'Pickup · ready in ~{m} min', orderLaterSub: 'Pickup · schedule your order',
+      viewMenu: 'View menu', viewMenuSub: 'Dishes & prices', servicarro: 'Drive-through and phone orders available',
+      hoursT: 'Hours', everyDay: 'Every day, Monday to Sunday', todayHours: 'Today', closedToday: 'Closed today', callUs: 'Call us',
+      menuTitle: 'Menu', menuSub: 'Prices before IVU tax · Pickup at Villa Andalucía', back: 'Back',
+      comboNote: 'With rice & fries, rice & tostones (+$2.50), or plain', miniNote: 'With fried rice, fries, white rice or tostones', vegNote: 'Mixed vegetables or broccoli',
       open: 'Open', closesAt: 'closes {t}', closed: 'Closed', opensAt: 'opens {t}', opensTomorrow: 'opens tomorrow {t}',
       paused: 'Online ordering paused', preorder: 'Opens at {t} — you can order now for later pickup.',
       closedNotice: 'We’re closed right now. You can browse the menu; online ordering opens {t}.', whenToday: 'today at {t}', whenTomorrow: 'tomorrow at {t}',

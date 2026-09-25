@@ -15,7 +15,9 @@ Customer phone ──► your website ──► Stripe Checkout (card / Apple Pa
 
 | Page | Who uses it | What it does |
 |---|---|---|
-| `/` | Customers | Menu, cart, pickup time (as soon as possible or a scheduled time today), name and phone, then Stripe payment |
+| `/` | Customers | Homepage: open/closed status, *Ordenar ahora* and *Ver menú* buttons, hours, phone numbers |
+| `/menu` | Customers | Read-only menu with prices (sold-out items marked) |
+| `/ordenar` | Customers | Menu, cart, pickup time (as soon as possible or a scheduled time today), name and phone, then Stripe payment |
 | `/pedido.html?o=…` | Customers | Order number and live status (*Recibido → En cocina → Lista*), plus directions and a call button |
 | `/kitchen/` | Staff (PIN) | Live orders, auto-print, *Lista ✓* / *Entregada ✓*, cancel and refund, pause online orders, mark items sold out, prep time |
 
