@@ -25,11 +25,11 @@
     soldOut = new Set(data.soldOut);
     // Drop saved cart lines whose options no longer exist on the menu (e.g. after a menu change).
     const stillValid = (l) => {
-      const it = items.get(l.id); if (!it) return false;
+      const it = items.get(l.id); if (!it || it.unavailable) return false;
       const groups = it.options || [];
       for (const [gid, v] of Object.entries(l.options || {})) {
         const g = groups.find((x) => x.id === gid); if (!g) return false;
-        if ((Array.isArray(v) ? v : [v]).some((id) => id !== '' && id != null && !g.choices.some((c) => c.id === id))) return false;
+        if (g.type !== 'count' && (Array.isArray(v) ? v : [v]).some((id) => id !== '' && id != null && !g.choices.some((c) => c.id === id))) return false;
       }
       try { ELOptions.normalize(it, l.options); return true; } catch { return false; }
     };
@@ -121,11 +121,11 @@
       html += `<section class="cat" id="cat-${c.id}"><h2>${esc(c.name[EL.lang] || c.name.es)}</h2>`;
       html += '<ul class="items">';
       for (const it of list) {
-        const so = soldOut.has(it.id); const q2 = qtyInCart(it.id);
-        html += `<li class="item${so ? ' soldout' : ''}${q2 ? ' in-cart' : ''}">
+        const na = !!it.unavailable; const so = na || soldOut.has(it.id); const q2 = qtyInCart(it.id);
+        html += `<li class="item${so ? ' soldout' : ''}${na ? ' unavailable' : ''}${q2 ? ' in-cart' : ''}">
           <button class="item-main" type="button" data-open="${it.id}" ${so ? 'disabled' : ''}>
             <span class="num">${it.num}</span>
-            <span><div class="item-name">${esc(it.short || it.name)}</div>${so ? `<div class="tag-soldout">${t('soldOut')}</div>` : ''}</span>
+            <span><div class="item-name">${esc(it.short || it.name)}</div>${so ? `<div class="tag-soldout">${t(na ? 'notAvailable' : 'soldOut')}</div>` : ''}</span>
             <span class="item-price">${money(it.price)}</span>
           </button>
           <button class="add" type="button" data-add="${it.id}" aria-label="${esc(t('add'))} ${esc(it.name)}">${PLUS}${q2 ? `<span class="qty-badge">${q2}</span>` : ''}</button>
@@ -175,7 +175,7 @@
   $('#menu').addEventListener('click', (e) => {
     const add = e.target.closest('[data-add]'); const open = e.target.closest('[data-open]');
     const id = add?.dataset.add || open?.dataset.open;
-    if (!id || soldOut.has(id)) return;
+    if (!id || soldOut.has(id) || items.get(id)?.unavailable) return;
     const it = items.get(id);
     if (add && !it.options?.length) { addToCart({ id, qty: 1, options: {}, note: '' }); toast(t('added', { n: it.name })); return; }
     openItem(id);
@@ -210,8 +210,20 @@
       const prev = line?.options?.[opt.id];
       html += `<fieldset data-opt="${opt.id}" class="optgroup${multi ? ' multi' : ''}"><legend>${esc(L(opt.label))} ${opt.required ? `<span class="req">${t('required')}</span>` : ''}</legend>`;
       if (opt.hint) html += `<p class="opt-hint">${esc(L(opt.hint))}</p>`;
+      if (opt.type === 'count') {
+        const counts = prev && typeof prev === 'object' && !Array.isArray(prev) ? prev : opt.default || {};
+        html += '<div class="choices counts">';
+        for (const ch of opt.choices) {
+          const n = Number(counts[ch.id] || 0);
+          html += `<div class="count-row${n ? ' on' : ''}" data-choice="${ch.id}"><span class="cn">${esc(L(ch.label))}</span>${ch.price ? `<span class="extra">+${money(ch.price)} ${esc(t('each'))}</span>` : ''}
+            <div class="stepper sm"><button type="button" data-cnt="-1" aria-label="Menos ${esc(L(ch.label))}">−</button><output>${n}</output><button type="button" data-cnt="1" aria-label="Más ${esc(L(ch.label))}">+</button></div></div>`;
+        }
+        html += `</div><div class="formerr" data-err>${t('errOption')}</div></fieldset>`;
+        continue;
+      }
       html += `<div class="choices${multi ? ' grid2' : ''}">`;
       for (const ch of opt.choices) {
+        if (ch.sepBefore) html += '<div class="choice-sep" role="separator"></div>';
         const checked = multi ? (prev || []).includes(ch.id) : prev ? prev === ch.id : opt.default === ch.id;
         html += `<label class="choice"><input type="${multi ? 'checkbox' : 'radio'}" name="opt-${opt.id}" value="${ch.id}" ${checked ? 'checked' : ''}>
           <span>${esc(L(ch.label))}${ch.sub ? `<small class="choice-sub">${esc(L(ch.sub))}</small>` : ''}</span>${ch.price ? `<span class="extra">+${money(ch.price)}</span>` : ''}</label>`;
@@ -219,6 +231,7 @@
       html += `</div><div class="formerr" data-err>${t('errOption')}</div></fieldset>`;
     }
     $('#itemBody').innerHTML = html;
+    for (const g of it.options || []) if (g.type === 'count') paintCounts(itemSheet.querySelector(`fieldset[data-opt="${g.id}"]`), g);
     $('#itemBody').scrollTop = 0;
     syncGroups(false);
     updateItemFoot();
@@ -228,6 +241,11 @@
   function readRaw(it) {
     const raw = {};
     for (const o of it.options || []) {
+      if (o.type === 'count') {
+        const fs = itemSheet.querySelector(`fieldset[data-opt="${o.id}"]`); const counts = {};
+        fs?.querySelectorAll('.count-row').forEach((r) => { counts[r.dataset.choice] = Number(r.querySelector('output').textContent); });
+        raw[o.id] = counts; continue;
+      }
       const boxes = [...itemSheet.querySelectorAll(`input[name="opt-${o.id}"]:checked`)].map((x) => x.value);
       if (boxes.length) raw[o.id] = o.type === 'multi' ? boxes : boxes[0];
     }
@@ -286,6 +304,36 @@
   $('#itemQty').addEventListener('click', (e) => {
     const d = Number(e.target.closest('[data-d]')?.dataset.d); if (!d) return;
     sheetQty = Math.max(1, Math.min(data.maxQty, sheetQty + d)); updateItemFoot();
+  });
+  // Piece counts (e.g. muslo / cadera): the total stays fixed, so adding one of a kind takes one from another.
+  function paintCounts(fs, g) {
+    const sum = [...fs.querySelectorAll('.count-row output')].reduce((a, o) => a + Number(o.textContent), 0);
+    fs.querySelectorAll('.count-row').forEach((r) => {
+      const n = Number(r.querySelector('output').textContent);
+      r.classList.toggle('on', n > 0);
+      r.querySelector('[data-cnt="-1"]').disabled = n <= 0;
+      r.querySelector('[data-cnt="1"]').disabled = g.total != null ? n >= g.total : sum >= (g.max ?? 99);
+    });
+  }
+  $('#itemBody').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-cnt]'); if (!b) return;
+    const fs = b.closest('fieldset'); const g = currentItem().options.find((o) => o.id === fs.dataset.opt);
+    const rows = [...fs.querySelectorAll('.count-row')]; const row = b.closest('.count-row');
+    const out = (r) => r.querySelector('output'); const get = (r) => Number(out(r).textContent);
+    const d = Number(b.dataset.cnt); const others = rows.filter((r) => r !== row);
+    if (g.total == null) { // free counts (extras): each row on its own, up to max in all
+      const sum = rows.reduce((a, r) => a + get(r), 0);
+      if (d > 0 && sum < (g.max ?? 99)) out(row).textContent = get(row) + 1;
+      if (d < 0 && get(row) > 0) out(row).textContent = get(row) - 1;
+    } else if (d > 0) {
+      const from = [...others].reverse().find((r) => get(r) > 0); if (!from || get(row) >= g.total) return;
+      out(from).textContent = get(from) - 1; out(row).textContent = get(row) + 1;
+    } else {
+      const to = others[0]; if (!to || get(row) <= 0) return;
+      out(to).textContent = get(to) + 1; out(row).textContent = get(row) - 1;
+    }
+    paintCounts(fs, g); fs.querySelector('[data-err]')?.classList.remove('show');
+    syncGroups(); updateItemFoot();
   });
   $('#itemBody').addEventListener('change', (e) => {
     const fs = e.target.closest('fieldset');

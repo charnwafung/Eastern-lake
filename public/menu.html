@@ -44,8 +44,8 @@
       $('#chips').innerHTML = data.categories.map((c, i) => `<button type="button" data-cat="${c.id}" class="${i === 0 ? 'on' : ''}">${esc(c.name[EL.lang] || c.name.es)}</button>`).join('');
       $('#menu').innerHTML = data.categories.map((c) => `<section id="cat-${c.id}"><h2>${esc(c.name[EL.lang] || c.name.es)}</h2>
         ${noteFor(c.id) ? `<p class="desc">${esc(noteFor(c.id))}</p>` : ''}
-        <ul>${c.items.map((it) => `<li class="${so.has(it.id) ? 'out' : ''}"><span class="n">${it.num}</span><span class="nm">${esc(it.short || it.name)}</span><span class="dots"></span>
-          <span class="pr">${so.has(it.id) ? esc(t('soldOut')) : money(it.price)}</span></li>`).join('')}</ul></section>`).join('');
+        <ul>${c.items.map((it) => `<li class="${it.unavailable ? 'out na' : so.has(it.id) ? 'out' : ''}"><span class="n">${it.num}</span><span class="nm">${esc(it.short || it.name)}</span><span class="dots"></span>
+          <span class="pr">${it.unavailable ? esc(t('notAvailable')) : so.has(it.id) ? esc(t('soldOut')) : money(it.price)}</span></li>`).join('')}</ul></section>`).join('');
       watch();
     }
 

@@ -122,6 +122,15 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 140px; }
 .item.in-cart .add { background: var(--jade-900); border-color: var(--jade-900); color: var(--ivory); }
 .item.soldout { opacity: .5; }
 .item.soldout .add { visibility: hidden; }
+.item.unavailable .item-name, .item.unavailable .item-price { text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.choices.counts { gap: 8px; }
+.count-row { display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 16px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--card); min-height: 56px; }
+.count-row.on { border-color: var(--jade-700); background: var(--jade-100); }
+.count-row .cn { font-weight: 500; }
+.count-row .extra { margin-left: 0; }
+.count-row .stepper { margin-left: auto; }
+.count-row.on .extra { background: var(--brass); border-color: var(--brass); color: #fff; }
+.choice-sep { grid-column: 1 / -1; height: 0; border-top: 1.5px solid #d3c8b0; margin: 6px 2px; }
 .tag-soldout { font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--danger); }
 .empty-search { text-align: center; color: var(--muted); padding: 40px 0; }
 footer.site { text-align: center; color: var(--muted); font-size: .8rem; padding: 12px 16px 0; }
@@ -170,7 +179,7 @@ legend, .label { font-weight: 600; font-size: .92rem; margin-bottom: 8px; paddin
 .choice input { accent-color: var(--jade-700); width: 20px; height: 20px; margin: 0; }
 .choice:has(input:checked) { border-color: var(--jade-700); background: var(--jade-100); }
 /* Extra-cost tag: always a visible brass pill; turns solid when that option is picked */
-.choice .extra { margin-left: auto; flex: none; font: 700 .86rem var(--mono, ui-monospace, monospace); color: #7a5a24; background: var(--brass-100); border: 1px solid #e6d3ae; border-radius: 999px; padding: 3px 10px; white-space: nowrap; transition: background .15s, color .15s; }
+.choice .extra, .count-row .extra { margin-left: auto; flex: none; font: 700 .86rem var(--mono, ui-monospace, monospace); color: #7a5a24; background: var(--brass-100); border: 1px solid #e6d3ae; border-radius: 999px; padding: 3px 10px; white-space: nowrap; transition: background .15s, color .15s; }
 .choice:has(input:checked) .extra { background: var(--brass); border-color: var(--brass); color: #fff; box-shadow: 0 2px 8px rgba(176, 141, 87, .35); }
 .choices.grid2 .choice .extra { padding: 2px 8px; font-size: .8rem; }
 #itemFoot { flex-wrap: wrap; }

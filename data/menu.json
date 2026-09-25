@@ -321,7 +321,8 @@
        "es": "Arroz sin soya",
        "en": "Rice: no soy sauce"
       },
-      "price": 0
+      "price": 0,
+      "sepBefore": true
      },
      {
       "id": "sin-sal",
@@ -1968,7 +1969,8 @@
      "id": "11",
      "num": 11,
      "name": "Alitas a la Sartén",
-     "price": 895
+     "price": 895,
+     "unavailable": true
     },
     {
      "id": "12",
@@ -2192,7 +2194,8 @@
           "es": "Arroz sin soya",
           "en": "Rice: no soy sauce"
          },
-         "price": 0
+         "price": 0,
+         "sepBefore": true
         },
         {
          "id": "sin-sal",
@@ -2372,7 +2375,8 @@
           "es": "Arroz sin soya",
           "en": "Rice: no soy sauce"
          },
-         "price": 0
+         "price": 0,
+         "sepBefore": true
         },
         {
          "id": "sin-sal",
@@ -2552,7 +2556,8 @@
           "es": "Arroz sin soya",
           "en": "Rice: no soy sauce"
          },
-         "price": 0
+         "price": 0,
+         "sepBefore": true
         },
         {
          "id": "sin-sal",
@@ -2732,7 +2737,8 @@
           "es": "Arroz sin soya",
           "en": "Rice: no soy sauce"
          },
-         "price": 0
+         "price": 0,
+         "sepBefore": true
         },
         {
          "id": "sin-sal",
@@ -2912,7 +2918,8 @@
           "es": "Arroz sin soya",
           "en": "Rice: no soy sauce"
          },
-         "price": 0
+         "price": 0,
+         "sepBefore": true
         },
         {
          "id": "sin-sal",
@@ -2985,11 +2992,43 @@
           "es": "Cadera",
           "en": "Cadera"
          },
-         "price": 50,
+         "price": 0,
          "summary": {
           "es": "Cadera",
           "en": "Cadera"
          }
+        }
+       ]
+      },
+      {
+       "id": "extra",
+       "type": "count",
+       "required": false,
+       "max": 10,
+       "label": {
+        "es": "Presas extra",
+        "en": "Extra pieces"
+       },
+       "hint": {
+        "es": "Opcional · $2.45 cada una",
+        "en": "Optional · $2.45 each"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo extra",
+          "en": "Extra muslo"
+         },
+         "price": 245
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera extra",
+          "en": "Extra cadera"
+         },
+         "price": 245
         }
        ]
       }
@@ -3017,11 +3056,11 @@
           "es": "Muslo",
           "en": "Muslo"
          },
-         "price": 0,
          "summary": {
           "es": "Muslo",
           "en": "Muslo"
-         }
+         },
+         "price": 0
         },
         {
          "id": "cadera",
@@ -3029,23 +3068,59 @@
           "es": "Cadera",
           "en": "Cadera"
          },
-         "price": 50,
+         "sub": {
+          "es": "$0.50 por presa × 2",
+          "en": "$0.50 per piece × 2"
+         },
          "summary": {
           "es": "Cadera",
           "en": "Cadera"
-         }
+         },
+         "price": 100
         },
         {
-         "id": "mixto",
+         "id": "muslo-cadera",
          "label": {
-          "es": "Mixto",
-          "en": "Mixed"
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
          },
-         "price": 0,
          "summary": {
-          "es": "Presas mixtas",
-          "en": "Mixed pieces"
-         }
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "extra",
+       "type": "count",
+       "required": false,
+       "max": 10,
+       "label": {
+        "es": "Presas extra",
+        "en": "Extra pieces"
+       },
+       "hint": {
+        "es": "Opcional · $2.45 cada una",
+        "en": "Optional · $2.45 each"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo extra",
+          "en": "Extra muslo"
+         },
+         "price": 245
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera extra",
+          "en": "Extra cadera"
+         },
+         "price": 245
         }
        ]
       }
@@ -3073,11 +3148,11 @@
           "es": "Muslo",
           "en": "Muslo"
          },
-         "price": 0,
          "summary": {
           "es": "Muslo",
           "en": "Muslo"
-         }
+         },
+         "price": 0
         },
         {
          "id": "cadera",
@@ -3085,23 +3160,59 @@
           "es": "Cadera",
           "en": "Cadera"
          },
-         "price": 50,
+         "sub": {
+          "es": "$0.50 por presa × 3",
+          "en": "$0.50 per piece × 3"
+         },
          "summary": {
           "es": "Cadera",
           "en": "Cadera"
-         }
+         },
+         "price": 150
         },
         {
-         "id": "mixto",
+         "id": "muslo-cadera",
          "label": {
-          "es": "Mixto",
-          "en": "Mixed"
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
          },
-         "price": 0,
          "summary": {
-          "es": "Presas mixtas",
-          "en": "Mixed pieces"
-         }
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "extra",
+       "type": "count",
+       "required": false,
+       "max": 10,
+       "label": {
+        "es": "Presas extra",
+        "en": "Extra pieces"
+       },
+       "hint": {
+        "es": "Opcional · $2.45 cada una",
+        "en": "Optional · $2.45 each"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo extra",
+          "en": "Extra muslo"
+         },
+         "price": 245
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera extra",
+          "en": "Extra cadera"
+         },
+         "price": 245
         }
        ]
       }
@@ -3129,11 +3240,11 @@
           "es": "Muslo",
           "en": "Muslo"
          },
-         "price": 0,
          "summary": {
           "es": "Muslo",
           "en": "Muslo"
-         }
+         },
+         "price": 0
         },
         {
          "id": "cadera",
@@ -3141,23 +3252,59 @@
           "es": "Cadera",
           "en": "Cadera"
          },
-         "price": 50,
+         "sub": {
+          "es": "$0.50 por presa × 5",
+          "en": "$0.50 per piece × 5"
+         },
          "summary": {
           "es": "Cadera",
           "en": "Cadera"
-         }
+         },
+         "price": 250
         },
         {
-         "id": "mixto",
+         "id": "muslo-cadera",
          "label": {
-          "es": "Mixto",
-          "en": "Mixed"
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
          },
-         "price": 0,
          "summary": {
-          "es": "Presas mixtas",
-          "en": "Mixed pieces"
-         }
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "extra",
+       "type": "count",
+       "required": false,
+       "max": 10,
+       "label": {
+        "es": "Presas extra",
+        "en": "Extra pieces"
+       },
+       "hint": {
+        "es": "Opcional · $2.45 cada una",
+        "en": "Optional · $2.45 each"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo extra",
+          "en": "Extra muslo"
+         },
+         "price": 245
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera extra",
+          "en": "Extra cadera"
+         },
+         "price": 245
         }
        ]
       }
@@ -3185,11 +3332,11 @@
           "es": "Muslo",
           "en": "Muslo"
          },
-         "price": 0,
          "summary": {
           "es": "Muslo",
           "en": "Muslo"
-         }
+         },
+         "price": 0
         },
         {
          "id": "cadera",
@@ -3197,23 +3344,59 @@
           "es": "Cadera",
           "en": "Cadera"
          },
-         "price": 50,
+         "sub": {
+          "es": "$0.50 por presa × 8",
+          "en": "$0.50 per piece × 8"
+         },
          "summary": {
           "es": "Cadera",
           "en": "Cadera"
-         }
+         },
+         "price": 400
         },
         {
-         "id": "mixto",
+         "id": "muslo-cadera",
          "label": {
-          "es": "Mixto",
-          "en": "Mixed"
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
          },
-         "price": 0,
          "summary": {
-          "es": "Presas mixtas",
-          "en": "Mixed pieces"
-         }
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "extra",
+       "type": "count",
+       "required": false,
+       "max": 10,
+       "label": {
+        "es": "Presas extra",
+        "en": "Extra pieces"
+       },
+       "hint": {
+        "es": "Opcional · $2.45 cada una",
+        "en": "Optional · $2.45 each"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo extra",
+          "en": "Extra muslo"
+         },
+         "price": 245
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera extra",
+          "en": "Extra cadera"
+         },
+         "price": 245
         }
        ]
       }
@@ -3241,11 +3424,11 @@
           "es": "Muslo",
           "en": "Muslo"
          },
-         "price": 0,
          "summary": {
           "es": "Muslo",
           "en": "Muslo"
-         }
+         },
+         "price": 0
         },
         {
          "id": "cadera",
@@ -3253,23 +3436,59 @@
           "es": "Cadera",
           "en": "Cadera"
          },
-         "price": 50,
+         "sub": {
+          "es": "$0.50 por presa × 10",
+          "en": "$0.50 per piece × 10"
+         },
          "summary": {
           "es": "Cadera",
           "en": "Cadera"
-         }
+         },
+         "price": 500
         },
         {
-         "id": "mixto",
+         "id": "muslo-cadera",
          "label": {
-          "es": "Mixto",
-          "en": "Mixed"
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
          },
-         "price": 0,
          "summary": {
-          "es": "Presas mixtas",
-          "en": "Mixed pieces"
-         }
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
+         },
+         "price": 0
+        }
+       ]
+      },
+      {
+       "id": "extra",
+       "type": "count",
+       "required": false,
+       "max": 10,
+       "label": {
+        "es": "Presas extra",
+        "en": "Extra pieces"
+       },
+       "hint": {
+        "es": "Opcional · $2.45 cada una",
+        "en": "Optional · $2.45 each"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo extra",
+          "en": "Extra muslo"
+         },
+         "price": 245
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera extra",
+          "en": "Extra cadera"
+         },
+         "price": 245
         }
        ]
       }
@@ -3325,16 +3544,48 @@
          }
         },
         {
-         "id": "mixto",
+         "id": "muslo-cadera",
          "label": {
-          "es": "Mixto",
-          "en": "Mixed"
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
          },
          "price": 0,
          "summary": {
-          "es": "Presas mixtas",
-          "en": "Mixed pieces"
+          "es": "Muslo y cadera",
+          "en": "Muslo y cadera"
          }
+        }
+       ]
+      },
+      {
+       "id": "extra",
+       "type": "count",
+       "required": false,
+       "max": 10,
+       "label": {
+        "es": "Presas extra",
+        "en": "Extra pieces"
+       },
+       "hint": {
+        "es": "Opcional · $2.45 cada una",
+        "en": "Optional · $2.45 each"
+       },
+       "choices": [
+        {
+         "id": "muslo",
+         "label": {
+          "es": "Muslo extra",
+          "en": "Extra muslo"
+         },
+         "price": 245
+        },
+        {
+         "id": "cadera",
+         "label": {
+          "es": "Cadera extra",
+          "en": "Extra cadera"
+         },
+         "price": 245
         }
        ]
       }

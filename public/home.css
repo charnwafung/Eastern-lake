@@ -95,6 +95,7 @@ footer.home img { width: 28px; height: 28px; border-radius: 50%; opacity: .8; di
 .mlist .dots { flex: 1; border-bottom: 1.5px dotted #d9d0bd; transform: translateY(-4px); min-width: 12px; }
 .mlist .pr { font: 500 15px var(--mono); color: var(--jade-900); white-space: nowrap; }
 .mlist li.out { opacity: .5; }
+.mlist li.na .nm { text-decoration: line-through; text-decoration-thickness: 1.5px; }
 .mlist li.out .pr { font: 700 11px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--red); }
 .mcta { position: fixed; left: 0; right: 0; bottom: 0; padding: 14px 16px calc(18px + var(--safe-b)); background: linear-gradient(to top, var(--ivory) 70%, rgba(246,241,231,0)); }
 .mcta a { max-width: 688px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; background: var(--brass); color: #fff; border-radius: 16px; min-height: 60px; padding: 0 22px; font-weight: 700; font-size: 18px; box-shadow: 0 10px 28px rgba(10,44,38,.28); }

@@ -26,6 +26,7 @@ function priceCart(rawItems, menuIndex, config) {
   for (const raw of rawItems) {
     const item = menuIndex.get(String(raw?.id));
     if (!item) throw new OrderError('unknown_item', 'Un artículo ya no está en el menú. Actualiza la página.');
+    if (item.unavailable) throw new OrderError('unavailable', `${item.name} no está disponible.`);
     if (soldOut.has(item.id)) throw new OrderError('sold_out', `${item.name} está agotado hoy.`);
     const qty = Math.floor(Number(raw.qty));
     if (!(qty >= 1 && qty <= config.maxQuantityPerLine)) throw new OrderError('bad_qty', 'Cantidad inválida.');
@@ -33,8 +34,8 @@ function priceCart(rawItems, menuIndex, config) {
     try { sel = Opt.normalize(item, raw.options); }
     catch (e) { if (e instanceof Opt.OptionError) throw new OrderError('bad_option', `${item.name}: ${e.message}`); throw e; }
     const unit = Opt.unitPrice(item, sel);
-    const chosen = Opt.chosen(item, sel).filter(({ choice }) => choice.summary !== null).map(({ group, choice }) => ({
-      group, id: choice.id, label: (choice.summary || choice.label).es, price: choice.price || 0,
+    const chosen = Opt.chosen(item, sel).filter(({ choice }) => choice.summary !== null).map((x) => ({
+      group: x.group, id: x.choice.id, label: Opt.label(x, 'es'), price: (x.choice.price || 0) * (x.qty || 1), ...(x.qty ? { qty: x.qty } : {}),
     }));
     lines.push({
       id: item.id, num: item.num, name: item.name, qty, unit, total: unit * qty,
