@@ -202,7 +202,7 @@
     itemSheet.dataset.id = id;
     sheetQty = line?.qty || 1;
     $('#itemTitle').textContent = it.name;
-    $('#itemSub').innerHTML = `<span class="mono">#${it.num}</span> · <span class="mono">${money(it.price)}</span>`;
+    $('#itemSub').innerHTML = `<span class="mono num">#${it.num}</span><span class="mono price">${money(it.price)}</span>`;
     const L = (o) => (o ? o[EL.lang] || o.es : '');
     let html = '';
     for (const opt of it.options || []) {

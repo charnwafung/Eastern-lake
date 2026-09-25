@@ -155,6 +155,9 @@ dialog.sheet::backdrop { background: rgba(10, 30, 26, .5); }
 .sheet-head { display: flex; align-items: flex-start; gap: 12px; padding: 20px 20px 12px; border-bottom: 1px solid var(--line); }
 .sheet-head h3 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 1.3rem; line-height: 1.2; color: var(--jade-900); }
 .sheet-head .sub { font-size: .85rem; color: var(--muted); margin-top: 3px; }
+#itemSub { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
+#itemSub .num { font-size: .8rem; color: var(--muted); }
+#itemSub .price { font-size: 1.12rem; font-weight: 500; color: var(--jade-900); }
 .close { margin-left: auto; flex: none; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--jade-100); color: var(--jade-900); display: grid; place-items: center; }
 .sheet-body { padding: 16px 20px; overflow-y: auto; flex: 1; }
 .sheet-foot { padding: 12px 20px calc(14px + var(--safe-b)); border-top: 1px solid var(--line); background: var(--paper); }
