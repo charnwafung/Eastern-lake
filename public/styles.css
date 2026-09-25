@@ -19,7 +19,7 @@
   --radius: 14px;
   --shadow: 0 1px 2px rgba(14, 59, 51, .06), 0 8px 24px rgba(14, 59, 51, .08);
   --serif: "Fraunces", Georgia, serif;
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   --safe-b: env(safe-area-inset-bottom, 0px);
 }
@@ -166,7 +166,15 @@ legend, .label { font-weight: 600; font-size: .92rem; margin-bottom: 8px; paddin
 .choice { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--card); cursor: pointer; min-height: 52px; }
 .choice input { accent-color: var(--jade-700); width: 20px; height: 20px; margin: 0; }
 .choice:has(input:checked) { border-color: var(--jade-700); background: var(--jade-100); }
-.choice .extra { margin-left: auto; font-size: .84rem; color: var(--muted); }
+/* Extra-cost tag: always a visible brass pill; turns solid when that option is picked */
+.choice .extra { margin-left: auto; flex: none; font: 700 .86rem var(--mono, ui-monospace, monospace); color: #7a5a24; background: var(--brass-100); border: 1px solid #e6d3ae; border-radius: 999px; padding: 3px 10px; white-space: nowrap; transition: background .15s, color .15s; }
+.choice:has(input:checked) .extra { background: var(--brass); border-color: var(--brass); color: #fff; box-shadow: 0 2px 8px rgba(176, 141, 87, .35); }
+.choices.grid2 .choice .extra { padding: 2px 8px; font-size: .8rem; }
+#itemFoot { flex-wrap: wrap; }
+.extras-line { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px 10px; justify-content: flex-end; font-size: .86rem; color: var(--muted); margin: -2px 2px 0; }
+.extras-line .plus { color: #7a5a24; font-weight: 700; }
+#itemSubmit.bump .amt { animation: bump .45s ease; display: inline-block; }
+@keyframes bump { 0% { transform: scale(1); } 35% { transform: scale(1.18); } 100% { transform: scale(1); } }
 textarea, .input, select {
   width: 100%; border: 1.5px solid var(--line); background: var(--card); border-radius: 12px; padding: 12px 14px; font-size: 16px; outline: none;
 }

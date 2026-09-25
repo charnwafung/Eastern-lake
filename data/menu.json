@@ -99,8 +99,8 @@
     "required": false,
     "default": "no",
     "label": {
-     "es": "¿Extra ajo?",
-     "en": "Extra garlic?"
+     "es": "Cantidad de ajo",
+     "en": "Garlic amount"
     },
     "showIf": {
      "group": "ajo",
@@ -112,23 +112,11 @@
      {
       "id": "no",
       "label": {
-       "es": "No, gracias",
-       "en": "No, thanks"
+       "es": "Ajo regular",
+       "en": "Regular garlic"
       },
       "summary": null,
       "price": 0
-     },
-     {
-      "id": "extra-050",
-      "label": {
-       "es": "Extra ajo",
-       "en": "Extra garlic"
-      },
-      "summary": {
-       "es": "Extra ajo ($0.50)",
-       "en": "Extra garlic ($0.50)"
-      },
-      "price": 50
      },
      {
       "id": "extra-100",
@@ -137,8 +125,8 @@
        "en": "Extra garlic"
       },
       "summary": {
-       "es": "Extra ajo ($1.00)",
-       "en": "Extra garlic ($1.00)"
+       "es": "Extra ajo",
+       "en": "Extra garlic"
       },
       "price": 100
      }
@@ -425,7 +413,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -467,6 +455,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -526,7 +553,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -568,6 +595,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -627,7 +693,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -669,6 +735,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -728,7 +833,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -770,6 +875,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -829,7 +973,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -871,6 +1015,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -930,7 +1113,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -972,6 +1155,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -1031,7 +1253,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -1073,6 +1295,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -1132,7 +1393,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -1174,6 +1435,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }
@@ -1233,7 +1533,7 @@
           "es": "Solo tostones",
           "en": "Tostones only"
          },
-         "price": 0
+         "price": 250
         }
        ]
       },
@@ -1275,6 +1575,45 @@
           "es": "Tostones sin ajo",
           "en": "Tostones, no garlic"
          }
+        }
+       ]
+      },
+      {
+       "id": "ajoextra",
+       "type": "single",
+       "required": false,
+       "default": "regular",
+       "label": {
+        "es": "Cantidad de ajo",
+        "en": "Garlic amount"
+       },
+       "showIf": {
+        "group": "ajo",
+        "in": [
+         "con-ajo"
+        ]
+       },
+       "choices": [
+        {
+         "id": "regular",
+         "label": {
+          "es": "Ajo regular",
+          "en": "Regular garlic"
+         },
+         "summary": null,
+         "price": 0
+        },
+        {
+         "id": "extra-100",
+         "label": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "summary": {
+          "es": "Extra ajo",
+          "en": "Extra garlic"
+         },
+         "price": 100
         }
        ]
       }

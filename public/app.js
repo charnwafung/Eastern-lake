@@ -23,10 +23,20 @@
     items = new Map();
     for (const c of data.categories) for (const it of c.items) items.set(it.id, { ...it, cat: c });
     soldOut = new Set(data.soldOut);
-    cart = cart.filter((l) => items.has(l.id));
+    // Drop saved cart lines whose options no longer exist on the menu (e.g. after a menu change).
+    const stillValid = (l) => {
+      const it = items.get(l.id); if (!it) return false;
+      const groups = it.options || [];
+      for (const [gid, v] of Object.entries(l.options || {})) {
+        const g = groups.find((x) => x.id === gid); if (!g) return false;
+        if ((Array.isArray(v) ? v : [v]).some((id) => id !== '' && id != null && !g.choices.some((c) => c.id === id))) return false;
+      }
+      try { ELOptions.normalize(it, l.options); return true; } catch { return false; }
+    };
+    cart = cart.filter(stillValid); saveCart();
     renderAll();
     if (new URLSearchParams(location.search).get('pago') === 'cancelado') {
-      if (!cart.length) { cart = store.get('el_last_order_cart', []).filter((l) => items.has(l.id)); saveCart(); renderMenu(); renderCartBar(); }
+      if (!cart.length) { cart = store.get('el_last_order_cart', []).filter(stillValid); saveCart(); renderMenu(); renderCartBar(); }
       toast(t('cancelled'));
       history.replaceState(null, '', '/ordenar');
       if (cart.length) openCart();
@@ -261,8 +271,17 @@
     const q = $('#itemQty'); q.querySelector('output').textContent = sheetQty;
     q.querySelector('[data-d="-1"]').disabled = sheetQty <= 1;
     q.querySelector('[data-d="1"]').disabled = sheetQty >= data.maxQty;
-    const total = unitPrice(it, readItemOptions(it)) * sheetQty;
-    $('#itemSubmit').innerHTML = `${editingKey ? t('update') : t('addToOrder')} <span class="amt">${money(total)}</span>`;
+    const unit = unitPrice(it, readItemOptions(it));
+    const total = unit * sheetQty;
+    const extra = unit - it.price;
+    // Spell out paid extras above the button so the higher price is never a surprise.
+    const ex = $('#itemExtras'); ex.hidden = extra <= 0;
+    if (extra > 0) ex.innerHTML = `<span>${esc(t('basePrice'))} ${money(it.price)}</span><span class="plus">+ ${esc(t('extrasCost'))} ${money(extra)}</span>${sheetQty > 1 ? `<span class="x">× ${sheetQty}</span>` : ''}`;
+    const btn = $('#itemSubmit');
+    const prev = Number(btn.dataset.total || 0);
+    btn.innerHTML = `${editingKey ? t('update') : t('addToOrder')} <span class="amt">${money(total)}</span>`;
+    if (prev && total > prev && btn.dataset.id === it.id) { btn.classList.remove('bump'); void btn.offsetWidth; btn.classList.add('bump'); }
+    btn.dataset.total = total; btn.dataset.id = it.id;
   }
   $('#itemQty').addEventListener('click', (e) => {
     const d = Number(e.target.closest('[data-d]')?.dataset.d); if (!d) return;

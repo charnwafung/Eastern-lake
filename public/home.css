@@ -3,7 +3,7 @@
   --ivory: #f6f1e7; --paper: #fbf8f2; --card: #fff; --jade-950: #0a2c26; --jade-900: #0e3b33; --jade-700: #1f5e52;
   --jade-500: #2e7d6b; --jade-100: #e2eee9; --brass: #b08d57; --brass-light: #c9a66b; --brass-100: #f3e9d6;
   --ink: #17211d; --muted: #5f675f; --line: #e6dfcf; --red: #a4372b;
-  --serif: "Fraunces", Georgia, serif; --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "Fraunces", Georgia, serif; --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   --safe-b: env(safe-area-inset-bottom, 0px);
 }

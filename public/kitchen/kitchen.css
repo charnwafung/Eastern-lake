@@ -2,7 +2,7 @@
   --bg: #0a2c26; --panel: #0f3a32; --card: #fbf8f2; --ink: #17211d; --muted: #6a716a;
   --ivory: #f6f1e7; --line: #e6dfcf; --jade: #1f5e52; --jade-500: #2e7d6b; --jade-100: #e2eee9;
   --brass: #c9a66b; --brass-d: #8a6a3a; --brass-100: #f3e9d6; --red: #c0392b; --red-100: #fbe3df;
-  --sans: "Inter", system-ui, Roboto, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace; --serif: "Fraunces", Georgia, serif;
+  --sans: "DM Sans", system-ui, Roboto, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace; --serif: "Fraunces", Georgia, serif;
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; }
