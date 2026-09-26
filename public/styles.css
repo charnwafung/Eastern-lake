@@ -281,7 +281,7 @@ textarea { resize: none; min-height: 64px; }
 @keyframes reveal { from { opacity: 0; transform: translateY(6px); } }
 .opt-hint { margin: -4px 0 10px; font-size: .82rem; color: var(--muted); }
 .choice-sub { display: block; font-size: .8rem; color: var(--muted); margin-top: 1px; }
-.choices.grid2 { grid-template-columns: 1fr 1fr; }
+.choices.grid2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .choices.grid2 .choice { padding: 11px 12px; gap: 10px; min-height: 48px; font-size: .94rem; }
 .choice input[type="checkbox"] { accent-color: var(--jade-700); width: 20px; height: 20px; margin: 0; }
 

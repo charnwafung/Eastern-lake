@@ -13,30 +13,58 @@
      {
       "id": "arroz-papas",
       "label": {
-       "es": "Con arroz y papas",
-       "en": "With rice & fries"
+       "es": "Con arroz frito y papas",
+       "en": "With fried rice & fries"
       },
       "price": 0
      },
      {
       "id": "arroz-tostones",
       "label": {
-       "es": "Con arroz y tostones",
-       "en": "With rice & tostones"
+       "es": "Con arroz frito y tostones",
+       "en": "With fried rice & tostones"
       },
       "price": 250
      },
      {
       "id": "arroz-sin-papas",
       "label": {
-       "es": "Con arroz, sin papas",
-       "en": "Rice only, no fries"
+       "es": "Con arroz frito, sin papas",
+       "en": "Fried rice only, no fries"
       },
+      "price": 0,
       "summary": {
-       "es": "Arroz, sin papas",
-       "en": "Rice, no fries"
+       "es": "Arroz frito, sin papas",
+       "en": "Fried rice, no fries"
+      }
+     },
+     {
+      "id": "blanco-papas",
+      "label": {
+       "es": "Con arroz blanco y papas",
+       "en": "With white rice & fries"
       },
       "price": 0
+     },
+     {
+      "id": "blanco-tostones",
+      "label": {
+       "es": "Con arroz blanco y tostones",
+       "en": "With white rice & tostones"
+      },
+      "price": 250
+     },
+     {
+      "id": "blanco-sin-papas",
+      "label": {
+       "es": "Con arroz blanco, sin papas",
+       "en": "White rice only, no fries"
+      },
+      "price": 0,
+      "summary": {
+       "es": "Arroz blanco, sin papas",
+       "en": "White rice, no fries"
+      }
      },
      {
       "id": "solo",
@@ -44,11 +72,11 @@
        "es": "Solo (sin acompañante)",
        "en": "Plain (no sides)"
       },
+      "price": 0,
       "summary": {
        "es": "Solo",
        "en": "Plain"
-      },
-      "price": 0
+      }
      }
     ]
    },
@@ -63,7 +91,8 @@
     "showIf": {
      "group": "acomp",
      "in": [
-      "arroz-tostones"
+      "arroz-tostones",
+      "blanco-tostones"
      ]
     },
     "choices": [
@@ -133,46 +162,6 @@
     ]
    },
    {
-    "id": "arroz",
-    "type": "single",
-    "required": true,
-    "default": "frito",
-    "label": {
-     "es": "Arroz",
-     "en": "Rice"
-    },
-    "showIf": {
-     "group": "acomp",
-     "in": [
-      "arroz-papas",
-      "arroz-tostones",
-      "arroz-sin-papas"
-     ]
-    },
-    "choices": [
-     {
-      "id": "frito",
-      "label": {
-       "es": "Arroz frito",
-       "en": "Fried rice"
-      },
-      "sub": {
-       "es": "Como viene normalmente",
-       "en": "How it normally comes"
-      },
-      "price": 0
-     },
-     {
-      "id": "blanco",
-      "label": {
-       "es": "Arroz blanco",
-       "en": "White rice"
-      },
-      "price": 0
-     }
-    ]
-   },
-   {
     "id": "arrozmod",
     "type": "multi",
     "required": false,
@@ -185,9 +174,11 @@
      "en": "Optional · pick as many as you like"
     },
     "showIf": {
-     "group": "arroz",
+     "group": "acomp",
      "in": [
-      "frito"
+      "arroz-papas",
+      "arroz-tostones",
+      "arroz-sin-papas"
      ]
     },
     "choices": [
@@ -347,6 +338,69 @@
        "en": "Rice: no MSG (ajinomoto)"
       },
       "price": 0
+     }
+    ]
+   },
+   {
+    "id": "aparte",
+    "type": "multi",
+    "required": false,
+    "label": {
+     "es": "Empacar aparte",
+     "en": "Pack separately"
+    },
+    "hint": {
+     "es": "Opcional · escoge uno · $2.50",
+     "en": "Optional · pick one · $2.50"
+    },
+    "showIf": {
+     "group": "acomp",
+     "in": [
+      "arroz-papas",
+      "arroz-tostones",
+      "arroz-sin-papas",
+      "blanco-papas",
+      "blanco-tostones",
+      "blanco-sin-papas"
+     ]
+    },
+    "choices": [
+     {
+      "id": "papas-aparte",
+      "label": {
+       "es": "Papas aparte",
+       "en": "Fries on the side"
+      },
+      "price": 250,
+      "summary": {
+       "es": "Papas aparte",
+       "en": "Fries on the side"
+      },
+      "showIf": {
+       "group": "acomp",
+       "in": [
+        "arroz-papas",
+        "blanco-papas"
+       ]
+      },
+      "conflicts": [
+       "carne-aparte"
+      ]
+     },
+     {
+      "id": "carne-aparte",
+      "label": {
+       "es": "Carne aparte",
+       "en": "Meat on the side"
+      },
+      "price": 250,
+      "summary": {
+       "es": "Carne aparte",
+       "en": "Meat on the side"
+      },
+      "conflicts": [
+       "papas-aparte"
+      ]
      }
     ]
    }
@@ -777,6 +831,29 @@
          "price": 100
         }
        ]
+      },
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-empanada",
+         "label": {
+          "es": "Sin empanada",
+          "en": "No breading"
+         },
+         "price": 0
+        }
+       ]
       }
      ]
     },
@@ -1055,6 +1132,29 @@
           "en": "Extra garlic"
          },
          "price": 100
+        }
+       ]
+      },
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-empanada",
+         "label": {
+          "es": "Sin empanada",
+          "en": "No breading"
+         },
+         "price": 0
         }
        ]
       }
@@ -3705,6 +3805,14 @@
           "en": "No carrots"
          },
          "price": 0
+        },
+        {
+         "id": "sin-empanada",
+         "label": {
+          "es": "Sin empanada",
+          "en": "No breading"
+         },
+         "price": 0
         }
        ]
       }
@@ -3715,14 +3823,64 @@
      "num": 37,
      "name": "Pollo Naranja",
      "price": 1250,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-empanada",
+         "label": {
+          "es": "Sin empanada",
+          "en": "No breading"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "38",
      "num": 38,
      "name": "Pollo Enchilado",
      "price": 1250,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-pique",
+         "label": {
+          "es": "Sin pique",
+          "en": "Not spicy"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "39",

@@ -225,7 +225,7 @@
       for (const ch of opt.choices) {
         if (ch.sepBefore) html += '<div class="choice-sep" role="separator"></div>';
         const checked = multi ? (prev || []).includes(ch.id) : prev ? prev === ch.id : opt.default === ch.id;
-        html += `<label class="choice"><input type="${multi ? 'checkbox' : 'radio'}" name="opt-${opt.id}" value="${ch.id}" ${checked ? 'checked' : ''}>
+        html += `<label class="choice" data-cid="${ch.id}"><input type="${multi ? 'checkbox' : 'radio'}" name="opt-${opt.id}" value="${ch.id}" ${checked ? 'checked' : ''}>
           <span>${esc(L(ch.label))}${ch.sub ? `<small class="choice-sub">${esc(L(ch.sub))}</small>` : ''}</span>${ch.price ? `<span class="extra">+${money(ch.price)}</span>` : ''}</label>`;
       }
       html += `</div><div class="formerr" data-err>${t('errOption')}</div></fieldset>`;
@@ -274,6 +274,12 @@
       if (vis && g.required && sel[g.id] == null) pending = true;
       if (vis && fs.hidden && !revealed) revealed = fs;
       fs.hidden = !vis;
+      for (const c of g.choices || []) { // choices that only apply to some answers (e.g. "Papas aparte" needs papas)
+        if (!c.showIf) continue;
+        const lab = fs.querySelector(`label[data-cid="${c.id}"]`); if (!lab) continue;
+        const on = ELOptions.choiceShown(c, sel); lab.hidden = !on;
+        if (!on) lab.querySelector('input').checked = false;
+      }
     }
     if (revealed && scroll) setTimeout(() => {
       const body = $('#itemBody');

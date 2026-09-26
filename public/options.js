@@ -5,7 +5,8 @@
 //            default is a counts object; each choice's price is charged per piece.
 //            Without `total` the counts are free (0 up to `max` pieces in all), e.g. optional extra pieces.
 //   showIf: { group, in: [choice ids] }  -> only asked when an earlier group has one of those answers
-//   choices: [{ id, label{es,en}, summary{es,en}?, sub{es,en}?, price (cents), conflicts: [choice ids] }]
+//   choices: [{ id, label{es,en}, summary{es,en}?, sub{es,en}?, price (cents), conflicts: [choice ids], showIf? }]
+//   A choice's own showIf ({ group, in }) hides just that choice unless an earlier answer matches.
 (function (root, factory) {
   const lib = factory();
   if (typeof module === 'object' && module.exports) module.exports = lib;
@@ -16,6 +17,7 @@
   }
 
   const L = (obj, lang) => (obj ? obj[lang] || obj.es : '');
+  const choiceShown = (c, sel) => !c.showIf || c.showIf.in.includes(sel[c.showIf.group]);
 
   // Which groups are currently asked, given the answers so far (a group is hidden if the group it depends on is hidden).
   function isVisible(groups, group, sel, seen = new Set()) {
@@ -53,8 +55,9 @@
         for (const c of g.choices) { const k = Number(src[c.id] || 0); if (k) counts[c.id] = k; } // menu order
         sel[g.id] = counts;
       } else if (g.type === 'multi') {
-        const ids = [...new Set((Array.isArray(val) ? val : val ? [val] : []).map(String))];
+        let ids = [...new Set((Array.isArray(val) ? val : val ? [val] : []).map(String))];
         for (const id of ids) if (!g.choices.some((c) => c.id === id)) throw new OptionError('Opción inválida.', g.id);
+        ids = ids.filter((id) => choiceShown(g.choices.find((c) => c.id === id), sel)); // drop choices that don't apply
         for (const id of ids) {
           const c = g.choices.find((x) => x.id === id);
           const clash = (c.conflicts || []).find((x) => ids.includes(x));
@@ -67,7 +70,8 @@
         if (ids.length) sel[g.id] = g.choices.filter((c) => ids.includes(c.id)).map((c) => c.id); // menu order
       } else {
         const id = val != null && val !== '' ? String(val) : g.default;
-        const c = g.choices.find((x) => x.id === id);
+        const c0 = g.choices.find((x) => x.id === id);
+        const c = c0 && choiceShown(c0, sel) ? c0 : null;
         if (!c) {
           if (g.required) throw new OptionError(`Escoge una opción: ${L(g.label, lang)}.`, g.id);
           continue;
@@ -101,5 +105,5 @@
   const label = (x, lang = 'es') => (x.qty ? `${x.qty} ${L(x.choice.label, lang)}` : L(x.choice.summary || x.choice.label, lang));
   const summary = (item, sel, lang = 'es') => chosen(item, sel).filter((x) => x.choice.summary !== null).map((x) => label(x, lang));
 
-  return { OptionError, isVisible, normalize, chosen, unitPrice, summary, label };
+  return { OptionError, isVisible, choiceShown, normalize, chosen, unitPrice, summary, label };
 });
