@@ -105,7 +105,7 @@ app.get('/api/menu', (req, res) => {
   res.json({
     restaurant: config.restaurant, taxRate: config.taxRate, taxLabel: config.taxLabel,
     maxQty: config.maxQuantityPerLine, timezone: config.timezone,
-    categories: menu.categories, soldOut: soldOutIds(), status: status(), hours: config.hours,
+    categories: menu.categories, bestSellers: menu.bestSellers || [], soldOut: soldOutIds(), status: status(), hours: config.hours,
   });
 });
 

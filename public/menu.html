@@ -33,6 +33,7 @@
     const { t, money, esc } = EL;
     const $ = (s) => document.querySelector(s);
     let data = null;
+    const STAR = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
     const noteFor = (id) => (id.startsWith('combo-') ? t('comboNote') : id === 'mini-combos' ? t('miniNote') : id === 'vegetales' ? t('vegNote') : '');
 
     function render() {
@@ -41,10 +42,11 @@
       $('#backBtn').setAttribute('aria-label', t('back'));
       if (!data) return;
       const so = new Set(data.soldOut);
+      const best = new Set(data.bestSellers || []);
       $('#chips').innerHTML = data.categories.map((c, i) => `<button type="button" data-cat="${c.id}" class="${i === 0 ? 'on' : ''}">${esc(c.name[EL.lang] || c.name.es)}</button>`).join('');
       $('#menu').innerHTML = data.categories.map((c) => `<section id="cat-${c.id}"><h2>${esc(c.name[EL.lang] || c.name.es)}</h2>
         ${noteFor(c.id) ? `<p class="desc">${esc(noteFor(c.id))}</p>` : ''}
-        <ul>${c.items.map((it) => `<li class="${it.unavailable ? 'out na' : so.has(it.id) ? 'out' : ''}"><span class="n">${it.num}</span><span class="nm">${esc(it.short || it.name)}</span><span class="dots"></span>
+        <ul>${c.items.map((it) => `<li class="${it.unavailable ? 'out na' : so.has(it.id) ? 'out' : ''}"><span class="n">${it.num}</span><span class="nm">${esc(it.short || it.name)}${best.has(it.id) && !it.unavailable ? `<span class="tag-best">${STAR}${esc(t('bestTag'))}</span>` : ''}</span><span class="dots"></span>
           <span class="pr">${it.unavailable ? esc(t('notAvailable')) : so.has(it.id) ? esc(t('soldOut')) : money(it.price)}</span></li>`).join('')}</ul></section>`).join('');
       watch();
     }

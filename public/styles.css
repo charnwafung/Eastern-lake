@@ -95,6 +95,20 @@ a { color: var(--jade-700); }
 /* ---------- Menu ---------- */
 main { max-width: 760px; margin: 0 auto; padding: 8px 16px 140px; }
 .cat { padding-top: 22px; }
+/* Best sellers: tag in the list + a sideways row of cards above the menu */
+.tag-best { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #7a5a24; background: var(--brass-100); border: 1px solid #e6d3ae; border-radius: 999px; padding: 2px 8px; }
+.fav { padding-top: 22px; }
+.fav h2 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 0; color: var(--jade-900); letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; }
+.fav h2 .star { width: 18px; height: 18px; color: var(--brass); }
+.fav-row { display: flex; gap: 10px; overflow-x: auto; margin: 12px -16px 0; padding: 2px 16px 12px; scroll-snap-type: x proximity; scroll-padding: 0 16px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.fav-row::-webkit-scrollbar { display: none; }
+.fav-card { flex: none; width: 152px; min-height: 138px; scroll-snap-align: start; background: var(--card); border-radius: 16px; border-top: 3px solid var(--brass); box-shadow: var(--shadow); display: flex; flex-direction: column; }
+.fav-main { flex: 1; text-align: left; background: none; border: 0; padding: 12px 14px 4px; display: flex; flex-direction: column; gap: 4px; color: inherit; }
+.fav-main .num { font: 500 .72rem var(--mono); color: var(--brass); width: auto; text-align: left; }
+.fav-main b { font: 600 1rem/1.2 var(--serif); color: var(--jade-900); }
+.fav-foot { display: flex; align-items: center; justify-content: space-between; padding: 0 10px 10px 14px; }
+.fav-foot .item-price { margin-left: 0; padding-left: 0; }
+.fav-foot .add { position: relative; width: 36px; height: 36px; }
 .cat h2 {
   font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 0; color: var(--jade-900);
   letter-spacing: -.01em; font-variation-settings: "opsz" 48; display: flex; align-items: baseline; gap: 10px;

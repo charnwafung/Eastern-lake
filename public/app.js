@@ -2,6 +2,7 @@
   const { t, money, time, sameDay, esc, store, toast } = EL;
   const $ = (s, r = document) => r.querySelector(s);
   const PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+  const STAR = '<svg class="star" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
 
   let data = null;          // /api/menu payload
   let items = new Map();    // id -> item (+category)
@@ -114,6 +115,18 @@
     const norm = (s) => s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
     const nq = norm(q);
     let html = ''; let shown = 0;
+    const best = new Set(data.bestSellers || []);
+    // "Los más pedidos": a sideways row of cards above the menu (hidden while searching)
+    const favs = nq ? [] : (data.bestSellers || []).map((id) => items.get(id)).filter((it) => it && !it.unavailable && !soldOut.has(it.id));
+    if (favs.length) {
+      html += `<section class="fav" aria-label="${esc(t('bestTitle'))}"><h2>${STAR}${esc(t('bestTitle'))}</h2><div class="fav-row">`;
+      for (const it of favs) {
+        const q2 = qtyInCart(it.id);
+        html += `<div class="fav-card${q2 ? ' in-cart' : ''}"><button class="fav-main" type="button" data-open="${it.id}"><span class="num">${it.num}</span><b>${esc(it.name)}</b></button>
+          <div class="fav-foot"><span class="item-price">${money(it.price)}</span><button class="add" type="button" data-add="${it.id}" aria-label="${esc(t('add'))} ${esc(it.name)}">${PLUS}${q2 ? `<span class="qty-badge">${q2}</span>` : ''}</button></div></div>`;
+      }
+      html += '</div></section>';
+    }
     for (const c of data.categories) {
       const list = c.items.filter((it) => !nq || norm(it.name).includes(nq) || String(it.num) === nq);
       if (!list.length) continue;
@@ -125,7 +138,7 @@
         html += `<li class="item${so ? ' soldout' : ''}${na ? ' unavailable' : ''}${q2 ? ' in-cart' : ''}">
           <button class="item-main" type="button" data-open="${it.id}" ${so ? 'disabled' : ''}>
             <span class="num">${it.num}</span>
-            <span><div class="item-name">${esc(it.short || it.name)}</div>${so ? `<div class="tag-soldout">${t(na ? 'notAvailable' : 'soldOut')}</div>` : ''}</span>
+            <span><div class="item-name">${esc(it.short || it.name)}</div>${best.has(it.id) && !so ? `<div class="tag-best">${STAR}${esc(t('bestTag'))}</div>` : ''}${so ? `<div class="tag-soldout">${t(na ? 'notAvailable' : 'soldOut')}</div>` : ''}</span>
             <span class="item-price">${money(it.price)}</span>
           </button>
           <button class="add" type="button" data-add="${it.id}" aria-label="${esc(t('add'))} ${esc(it.name)}">${PLUS}${q2 ? `<span class="qty-badge">${q2}</span>` : ''}</button>
