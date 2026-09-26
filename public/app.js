@@ -3,6 +3,8 @@
   const $ = (s, r = document) => r.querySelector(s);
   const PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
   const STAR = '<svg class="star" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
+  const CHEV_L = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
+  const CHEV_R = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
 
   let data = null;          // /api/menu payload
   let items = new Map();    // id -> item (+category)
@@ -119,13 +121,13 @@
     // "Los más pedidos": a sideways row of cards above the menu (hidden while searching)
     const favs = nq ? [] : (data.bestSellers || []).map((id) => items.get(id)).filter((it) => it && !it.unavailable && !soldOut.has(it.id));
     if (favs.length) {
-      html += `<section class="fav" aria-label="${esc(t('bestTitle'))}"><h2>${STAR}${esc(t('bestTitle'))}</h2><div class="fav-row">`;
+      html += `<section class="fav" aria-label="${esc(t('bestTitle'))}"><h2>${STAR}${esc(t('bestTitle'))}</h2><div class="fav-wrap"><button class="fav-nav prev" type="button" data-favnav="-1" aria-label="${esc(t('prev'))}" hidden>${CHEV_L}</button><div class="fav-row">`;
       for (const it of favs) {
         const q2 = qtyInCart(it.id);
         html += `<div class="fav-card${q2 ? ' in-cart' : ''}"><button class="fav-main" type="button" data-open="${it.id}"><span class="num">${it.num}</span><b>${esc(it.name)}</b></button>
           <div class="fav-foot"><span class="item-price">${money(it.price)}</span><button class="add" type="button" data-add="${it.id}" aria-label="${esc(t('add'))} ${esc(it.name)}">${PLUS}${q2 ? `<span class="qty-badge">${q2}</span>` : ''}</button></div></div>`;
       }
-      html += '</div></section>';
+      html += `</div><button class="fav-nav next" type="button" data-favnav="1" aria-label="${esc(t('next'))}" hidden>${CHEV_R}</button></div></section>`;
     }
     for (const c of data.categories) {
       const list = c.items.filter((it) => !nq || norm(it.name).includes(nq) || String(it.num) === nq);
@@ -149,6 +151,8 @@
     if (!shown) html = `<p class="empty-search">${esc(t('noResults', { q }))}</p>`;
     $('#menu').innerHTML = html;
     observeSections();
+    const row = $('#menu .fav-row');
+    if (row) { row.addEventListener('scroll', syncFavNav, { passive: true }); requestAnimationFrame(syncFavNav); }
   }
 
   // Highlight the section chip and slide the chip row sideways only.
@@ -185,7 +189,17 @@
     document.querySelectorAll('.cat').forEach((s) => io.observe(s));
   }
 
+  // Arrows for the "Los más pedidos" row (for mouse users; touch screens just swipe).
+  function syncFavNav() {
+    const row = $('#menu .fav-row'); if (!row) return;
+    const max = row.scrollWidth - row.clientWidth;
+    $('#menu .fav-nav.prev').hidden = row.scrollLeft <= 4;
+    $('#menu .fav-nav.next').hidden = row.scrollLeft >= max - 4;
+  }
+  window.addEventListener('resize', syncFavNav);
   $('#menu').addEventListener('click', (e) => {
+    const nav = e.target.closest('[data-favnav]');
+    if (nav) { const row = $('#menu .fav-row'); row.scrollBy({ left: Number(nav.dataset.favnav) * row.clientWidth * 0.8, behavior: 'smooth' }); return; }
     const add = e.target.closest('[data-add]'); const open = e.target.closest('[data-open]');
     const id = add?.dataset.add || open?.dataset.open;
     if (!id || soldOut.has(id) || items.get(id)?.unavailable) return;

@@ -107,6 +107,12 @@ main { max-width: 760px; margin: 0 auto; padding: 8px 16px 140px; }
 .fav-main .num { font: 500 .72rem var(--mono); color: var(--brass); width: auto; text-align: left; }
 .fav-main b { font: 600 1rem/1.2 var(--serif); color: var(--jade-900); }
 .fav-foot { display: flex; align-items: center; justify-content: space-between; padding: 0 10px 10px 14px; }
+.fav-wrap { position: relative; }
+.fav-nav { position: absolute; top: 50%; transform: translateY(-60%); z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--jade-900); display: none; place-items: center; box-shadow: 0 4px 14px rgba(14,59,51,.18); cursor: pointer; }
+.fav-nav.prev { left: -6px; }
+.fav-nav.next { right: -6px; }
+.fav-nav:hover { background: var(--jade-900); color: #fff; border-color: var(--jade-900); }
+@media (hover: hover) and (pointer: fine) { .fav-nav { display: grid; } }
 .fav-foot .item-price { margin-left: 0; padding-left: 0; }
 .fav-foot .add { position: relative; width: 36px; height: 36px; }
 .cat h2 {
