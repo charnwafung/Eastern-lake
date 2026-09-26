@@ -2,7 +2,7 @@
 window.EL = (() => {
   const STR = {
     es: {
-      orderNow: 'Ordenar ahora', orderNowSub: 'Para recoger · listo en ~{m} min', orderLaterSub: 'Para recoger · programa tu orden',
+      orderNow: 'Ordenar ahora', orderNowSub: 'Para recoger · ¡listo en 15 minutos!',
       viewMenu: 'Ver menú', viewMenuSub: 'Platos y precios', pickupWays: 'Recogido disponible por Servi-Carro o en tienda', servicarro: 'Servicarro y órdenes por teléfono disponibles',
       hoursT: 'Horario', everyDayShort: 'todos los días', everyDay: 'Todos los días, de lunes a domingo', todayHours: 'Hoy', closedToday: 'Cerrado hoy', callUs: 'Llámanos',
       menuTitle: 'Menú', menuSub: 'Precios no incluyen IVU · Para recoger en Villa Andalucía', back: 'Volver',
@@ -36,7 +36,7 @@ window.EL = (() => {
       paidTotal: 'Total pagado',
     },
     en: {
-      orderNow: 'Order now', orderNowSub: 'Pickup · ready in ~{m} min', orderLaterSub: 'Pickup · schedule your order',
+      orderNow: 'Order now', orderNowSub: 'Pickup · ready in 15 minutes!',
       viewMenu: 'View menu', viewMenuSub: 'Dishes & prices', pickupWays: 'Pickup available through Servi-Carro or in store', servicarro: 'Drive-through and phone orders available',
       hoursT: 'Hours', everyDayShort: 'every day', everyDay: 'Every day, Monday to Sunday', todayHours: 'Today', closedToday: 'Closed today', callUs: 'Call us',
       menuTitle: 'Menu', menuSub: 'Prices before IVU tax · Pickup at Villa Andalucía', back: 'Back',

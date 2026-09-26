@@ -2977,25 +2977,25 @@
         {
          "id": "muslo",
          "label": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "price": 0,
          "summary": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          }
         },
         {
          "id": "cadera",
          "label": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "price": 0,
          "summary": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          }
         }
        ]
@@ -3053,28 +3053,28 @@
         {
          "id": "muslo",
          "label": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "summary": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "price": 0
         },
         {
          "id": "cadera",
          "label": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "sub": {
           "es": "$0.50 por presa × 2",
           "en": "$0.50 per piece × 2"
          },
          "summary": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "price": 100
         },
@@ -3145,28 +3145,28 @@
         {
          "id": "muslo",
          "label": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "summary": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "price": 0
         },
         {
          "id": "cadera",
          "label": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "sub": {
           "es": "$0.50 por presa × 3",
           "en": "$0.50 per piece × 3"
          },
          "summary": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "price": 150
         },
@@ -3237,28 +3237,28 @@
         {
          "id": "muslo",
          "label": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "summary": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "price": 0
         },
         {
          "id": "cadera",
          "label": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "sub": {
           "es": "$0.50 por presa × 5",
           "en": "$0.50 per piece × 5"
          },
          "summary": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "price": 250
         },
@@ -3329,28 +3329,28 @@
         {
          "id": "muslo",
          "label": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "summary": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "price": 0
         },
         {
          "id": "cadera",
          "label": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "sub": {
           "es": "$0.50 por presa × 8",
           "en": "$0.50 per piece × 8"
          },
          "summary": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "price": 400
         },
@@ -3421,28 +3421,28 @@
         {
          "id": "muslo",
          "label": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "summary": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "price": 0
         },
         {
          "id": "cadera",
          "label": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "sub": {
           "es": "$0.50 por presa × 10",
           "en": "$0.50 per piece × 10"
          },
          "summary": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "price": 500
         },
@@ -3522,25 +3522,25 @@
         {
          "id": "muslo",
          "label": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          },
          "price": 0,
          "summary": {
-          "es": "Muslo",
-          "en": "Muslo"
+          "es": "Solo muslo",
+          "en": "Solo muslo"
          }
         },
         {
          "id": "cadera",
          "label": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          },
          "price": 50,
          "summary": {
-          "es": "Cadera",
-          "en": "Cadera"
+          "es": "Solo cadera",
+          "en": "Solo cadera"
          }
         },
         {

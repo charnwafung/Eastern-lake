@@ -47,11 +47,12 @@ button { font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-c
 .pickup-ways { position: relative; display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 14px; color: rgba(246,241,231,.85); }
 .pickup-ways svg { color: var(--brass-light); flex: none; }
 .ctas { position: relative; width: 100%; max-width: 420px; display: grid; gap: 12px; margin-top: auto; padding-top: 36px; }
-.btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; border-radius: 18px; padding: 0 22px; font-weight: 700; font-size: 19px; transition: transform .12s; }
+.btn { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 68px; border-radius: 999px; padding: 0 22px; font-weight: 700; font-size: 19px; transition: transform .12s; }
 .btn:active { transform: scale(.98); }
 .btn small { display: block; font-size: 13px; font-weight: 500; opacity: .8; margin-top: 2px; }
-.btn .t { text-align: left; }
-.btn svg { flex: none; }
+.btn .t { text-align: center; padding: 0 30px; text-transform: uppercase; letter-spacing: .05em; text-shadow: 0 1px 2px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.2); }
+.btn .t small { font-size: 11px; letter-spacing: .06em; }
+.btn svg { flex: none; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
 .btn.primary { background: var(--brass); color: #fff; box-shadow: 0 12px 30px rgba(0,0,0,.25); }
 .btn.secondary { background: transparent; color: var(--ivory); border: 1.5px solid rgba(246,241,231,.45); }
 .note { position: relative; font-size: 13px; color: rgba(246,241,231,.7); margin-top: 14px; }
