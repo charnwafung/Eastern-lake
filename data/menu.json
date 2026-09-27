@@ -4619,13 +4619,235 @@
      "id": "88",
      "num": 88,
      "name": "Refresco Lata",
-     "price": 185
+     "price": 185,
+     "options": [
+      {
+       "id": "sabor",
+       "type": "single",
+       "required": true,
+       "grid": true,
+       "label": {
+        "es": "Sabor",
+        "en": "Flavor"
+       },
+       "choices": [
+        {
+         "id": "coca-cola",
+         "label": {
+          "es": "Coca-Cola",
+          "en": "Coca-Cola"
+         },
+         "price": 0
+        },
+        {
+         "id": "coke-zero",
+         "label": {
+          "es": "Coke Zero",
+          "en": "Coke Zero"
+         },
+         "price": 0
+        },
+        {
+         "id": "diet-coke",
+         "label": {
+          "es": "Diet Coke",
+          "en": "Diet Coke"
+         },
+         "price": 0
+        },
+        {
+         "id": "pepsi",
+         "label": {
+          "es": "Pepsi",
+          "en": "Pepsi"
+         },
+         "price": 0
+        },
+        {
+         "id": "7up",
+         "label": {
+          "es": "7UP",
+          "en": "7UP"
+         },
+         "price": 0
+        },
+        {
+         "id": "sprite-zero",
+         "label": {
+          "es": "Sprite Zero",
+          "en": "Sprite Zero"
+         },
+         "price": 0
+        },
+        {
+         "id": "sunkist",
+         "label": {
+          "es": "Sunkist",
+          "en": "Sunkist"
+         },
+         "price": 0
+        },
+        {
+         "id": "fanta-uva",
+         "label": {
+          "es": "Fanta Uva",
+          "en": "Fanta Grape"
+         },
+         "price": 0
+        },
+        {
+         "id": "kola-champagne",
+         "label": {
+          "es": "Kola Champagne",
+          "en": "Kola Champagne"
+         },
+         "price": 0
+        },
+        {
+         "id": "coco-rico",
+         "label": {
+          "es": "Coco Rico",
+          "en": "Coco Rico"
+         },
+         "price": 0
+        },
+        {
+         "id": "hawaiian-punch",
+         "label": {
+          "es": "Hawaiian Punch",
+          "en": "Hawaiian Punch"
+         },
+         "price": 0
+        },
+        {
+         "id": "ginger-ale",
+         "label": {
+          "es": "Ginger Ale",
+          "en": "Ginger Ale"
+         },
+         "price": 0
+        },
+        {
+         "id": "agua-con-gas-toronja",
+         "label": {
+          "es": "Agua con gas toronja",
+          "en": "Sparkling water grapefruit"
+         },
+         "price": 0,
+         "sepBefore": true
+        },
+        {
+         "id": "agua-con-gas-limon",
+         "label": {
+          "es": "Agua con gas limón",
+          "en": "Sparkling water lemon"
+         },
+         "price": 0
+        },
+        {
+         "id": "agua-con-gas-lima",
+         "label": {
+          "es": "Agua con gas lima",
+          "en": "Sparkling water lime"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "89",
      "num": 89,
      "name": "Refresco Botella",
-     "price": 295
+     "price": 295,
+     "options": [
+      {
+       "id": "sabor",
+       "type": "single",
+       "required": true,
+       "grid": true,
+       "label": {
+        "es": "Sabor",
+        "en": "Flavor"
+       },
+       "choices": [
+        {
+         "id": "coca-cola",
+         "label": {
+          "es": "Coca-Cola",
+          "en": "Coca-Cola"
+         },
+         "price": 0
+        },
+        {
+         "id": "coke-zero",
+         "label": {
+          "es": "Coke Zero",
+          "en": "Coke Zero"
+         },
+         "price": 0
+        },
+        {
+         "id": "pepsi",
+         "label": {
+          "es": "Pepsi",
+          "en": "Pepsi"
+         },
+         "price": 0
+        },
+        {
+         "id": "7up",
+         "label": {
+          "es": "7UP",
+          "en": "7UP"
+         },
+         "price": 0
+        },
+        {
+         "id": "sunkist",
+         "label": {
+          "es": "Sunkist",
+          "en": "Sunkist"
+         },
+         "price": 0
+        },
+        {
+         "id": "lipton-iced-tea",
+         "label": {
+          "es": "Lipton Iced Tea",
+          "en": "Lipton Iced Tea"
+         },
+         "price": 0
+        },
+        {
+         "id": "powerade-uva",
+         "label": {
+          "es": "Powerade Uva",
+          "en": "Powerade Grape"
+         },
+         "price": 0,
+         "sepBefore": true
+        },
+        {
+         "id": "powerade-berry-blast",
+         "label": {
+          "es": "Powerade Berry Blast",
+          "en": "Powerade Berry Blast"
+         },
+         "price": 0
+        },
+        {
+         "id": "powerade-naranja",
+         "label": {
+          "es": "Powerade Naranja",
+          "en": "Powerade Orange"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     }
    ]
   }

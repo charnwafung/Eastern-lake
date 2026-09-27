@@ -248,7 +248,7 @@
         html += `</div><div class="formerr" data-err>${t('errOption')}</div></fieldset>`;
         continue;
       }
-      html += `<div class="choices${multi ? ' grid2' : ''}">`;
+      html += `<div class="choices${multi || opt.grid ? ' grid2' : ''}">`;
       for (const ch of opt.choices) {
         if (ch.sepBefore) html += '<div class="choice-sep" role="separator"></div>';
         const checked = multi ? (prev || []).includes(ch.id) : prev ? prev === ch.id : opt.default === ch.id;
