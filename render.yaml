@@ -28,5 +28,7 @@ services:
         sync: false
       - key: KITCHEN_PIN
         sync: false
+      - key: MANAGER_PIN
+        sync: false
       - key: PUBLIC_URL
         sync: false

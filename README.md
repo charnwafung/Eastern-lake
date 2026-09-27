@@ -19,7 +19,7 @@ Customer phone ──► your website ──► Stripe Checkout (card / Apple Pa
 | `/menu` | Customers | Read-only menu with prices (sold-out items marked) |
 | `/ordenar` | Customers | Menu, cart, pickup time (as soon as possible or a scheduled time today), name and phone, then Stripe payment |
 | `/pedido.html?o=…` | Customers | Order number and live status (*Recibido → En cocina → Lista*), plus directions and a call button |
-| `/kitchen/` | Staff (PIN) | Live orders, auto-print, *Lista ✓* / *Entregada ✓*, cancel and refund, pause online orders, mark items sold out, prep time |
+| `/kitchen/` | Staff (PIN) | **Employee PIN:** live orders, auto-print, *Lista ✓* / *Entregada ✓*, history. **Manager PIN:** also *Menú* (prices, names, agotado, options on/off, Más pedido), *Tienda* (pause, prep time, hours, closed days, homepage banner, PINs, change history), *Ventas* (sales, top dishes, CSV export) and cancel/refund. EN/ES button on each tablet |
 
 Prices are always calculated on the server from `data/menu.json`, so nobody can change a price in their browser. IVU (7%) is added as its own line on the Stripe receipt. Order numbers use the format `MMDDYY-XX` (for example `092226-07`) and start over each day.
 
@@ -67,7 +67,8 @@ To test with real Stripe test mode locally, copy `.env.example` to `.env`, fill 
 2. On https://render.com: **New → Blueprint** → pick the repo. Render reads `render.yaml`.
 3. Fill in the environment variables it asks for:
    - `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (from step 2)
-   - `KITCHEN_PIN`: pick a 4–8 digit PIN for the tablet
+   - `KITCHEN_PIN`: pick a 4–8 digit PIN for employees (orders only)
+   - `MANAGER_PIN`: a different 4–8 digit PIN for managers (menu, store, sales). Both PINs can be changed later from the kitchen screen (Tienda → PINs)
    - `PUBLIC_URL`: your site address, e.g. `https://ordenes.easternlakepr.com`
 4. Optional: Settings → Custom Domains to use your own domain.
 
@@ -144,3 +145,7 @@ public/                Customer site (index.html, app.js, pedido.html, styles.cs
 public/kitchen/        Kitchen tablet screen + printer driver (escpos.js)
 render.yaml            Render deployment
 ```
+
+## Manager changes vs. menu.json
+
+Changes a manager makes on the kitchen screen (prices, names, options switched off, "Más pedido", hours, closed days, banner) are saved in the database on the server's disk, **on top of** `data/menu.json` and `data/config.json`. Publishing a new version of the site keeps them. If a dish or option is later removed from `menu.json`, its saved change is simply ignored.

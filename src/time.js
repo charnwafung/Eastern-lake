@@ -36,18 +36,23 @@ function fmtTime(date, tz, locale = 'es-PR') {
 /**
  * Store status for "now": whether ordering is possible, and which pickup slots can be chosen.
  */
-function storeStatus(config, { paused = false, prepMinutes, now = new Date() } = {}) {
+function storeStatus(config, { paused = false, prepMinutes, now = new Date(), hours: weekHours = config.hours, closed = [] } = {}) {
   const tz = config.timezone;
   const p = partsIn(now, tz);
   const prep = prepMinutes ?? config.defaultPrepMinutes;
-  const hours = config.hours[String(p.wd)];
-  const base = { paused, prepMinutes: prep, now: now.toISOString() };
+  // Hours for a given day: the weekly schedule, unless that date is marked closed (holidays).
+  const closedSet = new Set(closed.map((c) => c.date));
+  const ymd = (q) => `${q.y}-${String(q.m).padStart(2, '0')}-${String(q.d).padStart(2, '0')}`;
+  const hoursOn = (q) => (closedSet.has(ymd(q)) ? null : weekHours[String(q.wd)]);
+  const hours = hoursOn(p);
+  const closedToday = closed.find((c) => c.date === ymd(p)) || null;
+  const base = { paused, prepMinutes: prep, now: now.toISOString(), closedToday };
 
   const nextOpening = () => {
     for (let i = 0; i < 8; i++) {
       const dt = new Date(now.getTime() + i * 86400000);
       const q = partsIn(dt, tz);
-      const h = config.hours[String(q.wd)];
+      const h = hoursOn(q);
       if (!h) continue;
       const [oh, om] = h[0].split(':').map(Number);
       const open = zonedDate(q.y, q.m, q.d, oh, om, tz);

@@ -17,10 +17,11 @@
 <body>
   <!-- Login -->
   <section id="login" class="screen login" hidden>
+    <button class="tb-lang login-lang" id="langBtn2" type="button">EN</button>
     <div class="login-card">
       <img src="/assets/logo-icon.png" alt="" width="64" height="64">
       <h1>Cocina</h1>
-      <p>Escribe el PIN</p>
+      <p data-en="Enter your PIN">Escribe tu PIN</p>
       <div class="pin-dots" id="pinDots"></div>
       <div class="pinpad" id="pinpad"></div>
       <div class="login-err" id="loginErr"></div>
@@ -30,68 +31,66 @@
   <!-- Start overlay: one tap unlocks sound, keeps the screen on and reconnects the printer -->
   <section id="start" class="screen start" hidden>
     <button id="startBtn" class="start-btn" type="button">
-      <span class="start-title">Empezar turno</span>
-      <span class="start-sub">Toca para activar sonido, impresora y pantalla encendida</span>
+      <span class="start-title" data-en="Start shift">Empezar turno</span>
+      <span class="start-sub" data-en="Tap to turn on sound, printer and keep the screen awake">Toca para activar sonido, impresora y pantalla encendida</span>
     </button>
   </section>
 
   <!-- Main board -->
   <section id="board" class="screen" hidden>
     <header class="topbar">
-      <div class="tb-brand"><img src="/assets/logo-icon.png" alt="" width="34" height="34"><span>Eastern Lake · Cocina</span></div>
+      <div class="tb-brand"><img src="/assets/logo-icon.png" alt="" width="34" height="34"><span data-en="Eastern Lake · Kitchen">Eastern Lake · Cocina</span><b class="role" id="roleBadge" hidden></b></div>
       <div class="tb-clock mono" id="clock"></div>
       <button class="tb-chip" id="printerChip" type="button"></button>
       <button class="tb-chip" id="onlineChip" type="button"></button>
+      <button class="tb-lang" id="langBtn" type="button">EN</button>
       <button class="tb-icon" id="menuBtn" type="button" aria-label="Ajustes">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </header>
     <div class="alert" id="alert" hidden></div>
     <nav class="tabs">
-      <button class="tab active" data-tab="live" type="button">En curso <span class="badge" id="liveCount">0</span></button>
-      <button class="tab" data-tab="history" type="button">Historial</button>
+      <button class="tab active" data-tab="live" type="button"><span data-en="Live">En curso</span> <span class="badge" id="liveCount">0</span></button>
+      <button class="tab" data-tab="history" type="button" data-en="History">Historial</button>
+      <button class="tab mgr" data-tab="menu" type="button" data-en="Menu" hidden>Menú</button>
+      <button class="tab mgr" data-tab="store" type="button" data-en="Store" hidden>Tienda</button>
+      <button class="tab mgr" data-tab="sales" type="button" data-en="Sales" hidden>Ventas</button>
       <div class="today mono" id="today"></div>
     </nav>
     <main id="live" class="cols">
-      <section class="col"><h2>Nuevas / En cocina <span class="badge" id="newCount">0</span></h2><div class="cards" id="colNew"></div></section>
-      <section class="col"><h2>Listas para recoger <span class="badge" id="readyCount">0</span></h2><div class="cards" id="colReady"></div></section>
+      <section class="col"><h2><span data-en="New / Cooking">Nuevas / En cocina</span> <span class="badge" id="newCount">0</span></h2><div class="cards" id="colNew"></div></section>
+      <section class="col"><h2><span data-en="Ready for pickup">Listas para recoger</span> <span class="badge" id="readyCount">0</span></h2><div class="cards" id="colReady"></div></section>
     </main>
     <main id="history" class="history" hidden></main>
+    <main id="menuTab" class="pane" hidden></main>
+    <main id="storeTab" class="pane" hidden></main>
+    <main id="salesTab" class="pane" hidden></main>
   </section>
 
   <!-- Settings drawer -->
   <dialog class="drawer" id="drawer">
-    <div class="drawer-head"><h2>Ajustes</h2><button class="tb-icon" data-close type="button" aria-label="Cerrar">✕</button></div>
+    <div class="drawer-head"><h2 data-en="Settings">Ajustes</h2><button class="tb-icon" data-close type="button" aria-label="Cerrar">✕</button></div>
     <div class="drawer-body">
       <section class="set">
-        <h3>Impresora</h3>
+        <h3 data-en="Printer">Impresora</h3>
         <p class="set-status" id="prnStatus"></p>
         <div class="row">
-          <button class="kbtn" id="prnConnect" type="button">Conectar impresora USB</button>
-          <button class="kbtn ghost" id="prnTest" type="button">Imprimir prueba</button>
+          <button class="kbtn" id="prnConnect" type="button" data-en="Connect USB printer">Conectar impresora USB</button>
+          <button class="kbtn ghost" id="prnTest" type="button" data-en="Print test">Imprimir prueba</button>
         </div>
-        <label class="toggle"><input type="checkbox" id="autoPrint"><span>Imprimir automáticamente las órdenes nuevas</span></label>
-        <label class="toggle"><input type="checkbox" id="asciiPrint"><span>Sin acentos (si salen signos raros en el papel)</span></label>
-        <label class="field-inline">Copias por orden
+        <label class="toggle"><input type="checkbox" id="autoPrint"><span data-en="Print new orders automatically">Imprimir automáticamente las órdenes nuevas</span></label>
+        <label class="toggle"><input type="checkbox" id="asciiPrint"><span data-en="No accents (if odd symbols print on the paper)">Sin acentos (si salen signos raros en el papel)</span></label>
+        <label class="field-inline"><span data-en="Copies per order">Copias por orden</span>
           <select id="copies"><option>1</option><option>2</option><option>3</option></select></label>
-        <button class="linkbtn" id="browserPrintTest" type="button">¿No tienes USB? Probar impresión por el navegador</button>
+        <button class="linkbtn" id="browserPrintTest" type="button" data-en="No USB? Try printing through the browser">¿No tienes USB? Probar impresión por el navegador</button>
       </section>
       <section class="set">
-        <h3>Órdenes en línea</h3>
-        <label class="toggle"><input type="checkbox" id="pausedToggle"><span>Pausar órdenes en línea</span></label>
-        <label class="field-inline">Tiempo de preparación
-          <select id="prepSel"></select></label>
-        <label class="toggle"><input type="checkbox" id="soundToggle"><span>Sonido de orden nueva</span></label>
-        <button class="linkbtn" id="soundTest" type="button">Probar sonido</button>
+        <h3 data-en="Sound">Sonido</h3>
+        <label class="toggle"><input type="checkbox" id="soundToggle"><span data-en="New order sound">Sonido de orden nueva</span></label>
+        <button class="linkbtn" id="soundTest" type="button" data-en="Test sound">Probar sonido</button>
       </section>
       <section class="set">
-        <h3>Agotados hoy</h3>
-        <p class="set-status">Lo que marques aquí no se puede ordenar en línea hasta que lo desmarques.</p>
-        <input class="search" id="soSearch" type="search" placeholder="Buscar plato o número">
-        <div id="soList" class="solist"></div>
-      </section>
-      <section class="set">
-        <button class="kbtn ghost danger" id="logout" type="button">Cerrar sesión en esta tableta</button>
+        <button class="kbtn ghost danger" id="logout" type="button" data-en="Sign out on this tablet">Cerrar sesión en esta tableta</button>
       </section>
     </div>
   </dialog>

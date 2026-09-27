@@ -93,6 +93,7 @@
       pill.textContent = s.nextOpen ? `${t('closed')} · ${opensLbl(s.nextOpen)}` : t('closed');
       if (s.nextOpen) n.innerHTML = `<div class="notice warn">${esc(t('closedNotice', { t: t(sameDay(new Date(s.nextOpen), now) ? 'whenToday' : 'whenTomorrow', { t: time(s.nextOpen) }) }))}</div>`;
     }
+    if (data.banner) n.insertAdjacentHTML('afterbegin', `<div class="notice banner">📣 ${esc(data.banner)}</div>`);
     if (!s.asap && pickup.type === 'asap') pickup = { type: 'scheduled', at: s.slots[0] || null };
     if (pickup.type === 'scheduled' && !s.slots.includes(pickup.at)) pickup.at = s.slots[0] || null;
     if (s.asap && pickup.type === 'scheduled' && !pickup.at) pickup = { type: 'asap', at: null };

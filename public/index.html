@@ -29,6 +29,7 @@
       <span class="pill" id="statusPill"></span>
       <p class="hours-line" id="hoursLine"></p>
     </div>
+    <p class="banner" id="banner" hidden></p>
     <div class="ctas">
       <a class="btn primary" href="/ordenar">
         <span class="t"><span id="orderLbl">Ordenar ahora</span><small id="orderSub">Para recoger · ¡listo en 15 minutos!</small></span>
@@ -74,6 +75,7 @@
       const H = data.hours; const keys = ['0', '1', '2', '3', '4', '5', '6'];
       const range = (h) => (h ? `${hm(h[0])} – ${hm(h[1])}` : t('closedToday'));
       const same = keys.every((k) => JSON.stringify(H[k]) === JSON.stringify(H['0'])) && H['0'];
+      $('#banner').hidden = !data.banner; $('#banner').textContent = data.banner ? `📣 ${data.banner}` : '';
       const hl = $('#hoursLine');
       if (same) hl.innerHTML = `${esc(range(H['0']))} <span>· ${esc(t('everyDayShort'))}</span>`;
       else {

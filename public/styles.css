@@ -69,6 +69,7 @@ a { color: var(--jade-700); }
   margin: 14px 16px 0; padding: 12px 14px; border-radius: var(--radius); background: var(--brass-100);
   color: #5d4520; font-size: .9rem; border: 1px solid #e8d7b5;
 }
+.notice.banner { background: var(--brass-100, #f3e9d6); color: #5a4300; border-color: #e6d3ae; font-weight: 600; }
 .notice.warn { background: var(--danger-100); color: #6b241c; border-color: #ecc7c0; }
 
 /* ---------- Category nav ---------- */
