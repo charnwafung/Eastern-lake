@@ -208,8 +208,10 @@
     const pick = o.pickupType === 'asap'
       ? `<div class="card-pick"><span>LO ANTES POSIBLE</span><span>~${hm(o.pickupAt)}</span></div>`
       : `<div class="card-pick sched"><span>PROGRAMADA</span><span>${hm(o.pickupAt)}</span></div>`;
-    const items = o.items.map((l) => `<li><span class="q">${l.qty}×</span><span class="n">${esc(l.name)}<small>#${l.num}</small></span>
-      ${l.options.length ? `<span class="mods">${esc(l.options.map((x) => x.label).join(' · '))}</span>` : ''}
+    // One modifier per line: removals in red capitals, extras / "aparte" highlighted, the rest plain.
+    const modCls = (x) => (x.group !== 'acomp' && /\b(sin|solo)\b/i.test(x.label) ? 'rm' : /extra|aparte/i.test(x.label) ? 'add' : '');
+    const items = o.items.map((l) => `<li><span class="q">${l.qty}×</span><span class="n"><small>#${l.num}</small>${esc(l.name)}</span>
+      ${l.options.length ? `<div class="mods">${l.options.map((x) => `<div class="m ${modCls(x)}">${esc(x.label)}</div>`).join('')}</div>` : ''}
       ${l.note ? `<span class="note">${esc(l.note)}</span>` : ''}</li>`).join('');
     const printed = o.printedAt ? '<span class="pbadge ok">Impreso</span>' : `<span class="pbadge no">${inflight.has(o.id) ? 'Imprimiendo…' : 'Sin imprimir'}</span>`;
     const actions = o.status === 'paid'
