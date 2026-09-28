@@ -2117,7 +2117,112 @@
      "id": "15",
      "num": 15,
      "name": "Sopa China",
-     "price": 925
+     "price": 925,
+     "options": [
+      {
+       "id": "sopamod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios a la sopa",
+        "en": "Soup changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-pollo",
+         "label": {
+          "es": "Sin pollo",
+          "en": "No chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pollo"
+         ]
+        },
+        {
+         "id": "solo-pollo",
+         "label": {
+          "es": "Solo pollo",
+          "en": "Only chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pollo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-jamon",
+         "label": {
+          "es": "Sin jamón",
+          "en": "No ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jamon"
+         ]
+        },
+        {
+         "id": "solo-jamon",
+         "label": {
+          "es": "Solo jamón",
+          "en": "Only ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jamon"
+         ]
+        },
+        {
+         "id": "sin-fideo",
+         "label": {
+          "es": "Sin fideo",
+          "en": "No noodles"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-fideo"
+         ]
+        },
+        {
+         "id": "solo-fideo",
+         "label": {
+          "es": "Solo fideo",
+          "en": "Only noodles"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-fideo"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "16",
@@ -2135,7 +2240,76 @@
      "id": "18",
      "num": 18,
      "name": "Sopa Wonton",
-     "price": 925
+     "price": 925,
+     "options": [
+      {
+       "id": "sopamod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios a la sopa",
+        "en": "Soup changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "solo-wonton",
+         "label": {
+          "es": "Solo wonton",
+          "en": "Only wonton"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "19",
@@ -2147,7 +2321,76 @@
      "id": "20",
      "num": 20,
      "name": "Sopa Dumpling",
-     "price": 925
+     "price": 925,
+     "options": [
+      {
+       "id": "sopamod",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios a la sopa",
+        "en": "Soup changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "solo-dumpling",
+         "label": {
+          "es": "Solo dumpling",
+          "en": "Only dumplings"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     }
    ]
   },
