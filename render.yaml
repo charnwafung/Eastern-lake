@@ -32,3 +32,10 @@ services:
         sync: false
       - key: PUBLIC_URL
         sync: false
+      # Customer emails (Resend). Leave empty to turn them off.
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: EMAIL_REPLY_TO
+        sync: false

@@ -43,6 +43,13 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS sold_out (item_id TEXT PRIMARY KEY);
 `);
 
+// Columns added after launch (older databases get them on start-up).
+{
+  const have = new Set(db.prepare('PRAGMA table_info(orders)').all().map((c) => c.name));
+  const add = { lang: "TEXT DEFAULT 'es'", notify_json: 'TEXT' };
+  for (const [col, type] of Object.entries(add)) if (!have.has(col)) db.exec(`ALTER TABLE orders ADD COLUMN ${col} ${type}`);
+}
+
 function getSetting(key, fallback) {
   const row = db.prepare('SELECT value FROM settings WHERE key = ?').get(key);
   return row ? JSON.parse(row.value) : fallback;

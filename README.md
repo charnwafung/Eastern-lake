@@ -61,6 +61,23 @@ To test with real Stripe test mode locally, copy `.env.example` to `.env`, fill 
 
 ---
 
+## Customer emails
+
+When an order is paid, the customer gets an email with the order number, pickup time, items, total and a link to
+follow the order. When the kitchen taps **Lista**, they get a second email saying it's ready. Each email is sent once
+per order; the kitchen card shows ✉ ✓ when it went out, or ✉ ✗ if it failed (call the customer).
+Nothing is sent until the keys below are set, and the site works the same without them.
+
+1. Sign up at https://resend.com → Domains → Add `eastern-lake.com`.
+2. Add the DNS records it shows at Wix. They go on `send.eastern-lake.com` and `resend._domainkey`, so the Google
+   email records (MX/TXT on the main domain) stay as they are.
+3. When it says Verified: API Keys → create one → Render → Environment: `RESEND_API_KEY`,
+   `EMAIL_FROM=Eastern Lake <ordenes@eastern-lake.com>`, `EMAIL_REPLY_TO=admin@eastern-lake.com`.
+
+Locally, without a key, emails are saved as files in `var/outbox/` so you can open them in a browser.
+
+---
+
 ## 3. Put it online (Render)
 
 1. Put this folder in a GitHub repository (private is fine).

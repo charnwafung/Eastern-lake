@@ -481,6 +481,9 @@
       <div class="field" id="fPhone"><label class="label" for="cPhone">${t('phone')}</label>
         <input class="input" id="cPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="787-555-1234" value="${esc(saved.phone || '')}">
         <div class="err">${t('errPhone')}</div><div class="hint">${t('phoneHint')}</div></div>
+      <div class="field" id="fEmail"><label class="label" for="cEmail">${t('email')}</label>
+        <input class="input" id="cEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="120" placeholder="${esc(t('emailPh'))}" value="${esc(saved.email || '')}">
+        <div class="err">${t('errEmail')}</div><div class="hint">${t('emailHint')}</div></div>
       <div class="field"><label class="label" for="cNotes">${t('orderNotes')}</label>
         <textarea id="cNotes" maxlength="240" placeholder="${esc(t('orderNotesPh'))}">${esc(saved.notes || '')}</textarea></div>`;
 
@@ -514,6 +517,7 @@
   function rememberForm() {
     if (!$('#cName')) return;
     saved.name = $('#cName').value; saved.phone = $('#cPhone').value; saved.notes = $('#cNotes').value;
+    saved.email = $('#cEmail').value;
   }
 
   $('#payBtn').onclick = async () => {
@@ -522,15 +526,17 @@
     let ok = true;
     if (name.length < 2) { $('#fName').classList.add('invalid'); ok = false; }
     if (digits.length < 10 || digits.length > 11) { $('#fPhone').classList.add('invalid'); ok = false; }
+    const email = saved.email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)) { $('#fEmail').classList.add('invalid'); ok = false; }
     if (!ok) { cartSheet.querySelector('.invalid .input').focus(); return; }
-    store.set('el_customer', { name: saved.name, phone: saved.phone });
+    store.set('el_customer', { name: saved.name, phone: saved.phone, email });
     const btn = $('#payBtn'); btn.disabled = true; btn.textContent = t('paying');
     try {
       const r = await fetch('/api/checkout', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           items: cart.map(({ id, qty, options, note }) => ({ id, qty, options, note })),
-          name, phone: saved.phone, notes: saved.notes, pickup, lang: EL.lang,
+          name, phone: saved.phone, email, notes: saved.notes, pickup, lang: EL.lang,
         }),
       });
       const j = await r.json();

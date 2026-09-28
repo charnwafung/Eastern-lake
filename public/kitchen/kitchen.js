@@ -252,6 +252,13 @@
     const actions = o.status === 'paid'
       ? `<button class="kbtn ghost" data-a="print">${tr('Imprimir', 'Print')}</button>${cancel}<button class="kbtn big" data-a="ready">${tr('Lista ✓', 'Ready ✓')}</button>`
       : `<button class="kbtn ghost" data-a="back">${tr('Volver', 'Back')}</button>${cancel}<button class="kbtn big brass" data-a="done">${tr('Entregada ✓', 'Picked up ✓')}</button>`;
+    // Did the customer get the email for this step? (confirmation while cooking, "ready" once ready)
+    const nk = o.status === 'ready' ? 'ready' : 'confirm'; const nt = (o.notify || {})[nk] || {};
+    const nb = (ch, icon, es, en) => { const v = nt[ch];
+      if (v === 'sent') return `<span class="nbadge ok" title="${tr(`${es} enviado`, `${en} sent`)}">${icon} ✓</span>`;
+      if (v === 'failed') return `<span class="nbadge no" title="${tr(`${es} no se pudo enviar`, `${en} failed`)}">${icon} ✗</span>`;
+      return ''; };
+    const notified = nb('email', '✉', 'Correo', 'Email');
     const age = mins < 1 ? tr('ahora', 'now') : tr(`hace ${mins} min`, `${mins} min ago`);
     return `<article class="card ${o.status}${fresh.has(o.id) ? ' fresh' : ''}" data-id="${o.id}">
       <div class="card-head"><span class="card-num">${esc(o.number)}</span><span class="card-age${late ? ' late' : ''}">${age}${late ? tr(' · ¡atrasada!', ' · late!') : ''}</span></div>
@@ -259,7 +266,7 @@
       <div class="card-who"><b>${esc(o.name)}</b><a href="tel:+1${o.phone.replace(/\D/g, '')}">${esc(o.phone)}</a></div>
       <ul class="card-items">${items}</ul>
       ${o.notes ? `<div class="card-note">📝 ${esc(o.notes)}</div>` : ''}
-      <div class="card-meta">${printed}<span>${o.items.reduce((s, l) => s + l.qty, 0)} ${tr('art.', 'items')}</span><span class="tot">${money(o.total)}</span></div>
+      <div class="card-meta">${printed}${notified}<span>${o.items.reduce((s, l) => s + l.qty, 0)} ${tr('art.', 'items')}</span><span class="tot">${money(o.total)}</span></div>
       <div class="card-actions${isMgr() ? '' : ' two'}">${actions}</div></article>`;
   }
 

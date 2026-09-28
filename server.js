@@ -7,6 +7,7 @@ const { db, getSetting, setSetting, soldOutIds, setSoldOut } = require('./src/db
 const { storeStatus, partsIn } = require('./src/time');
 const O = require('./src/orders');
 const A = require('./src/admin');
+const N = require('./src/notify');
 
 const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'config.json'), 'utf8'));
 const menu = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'menu.json'), 'utf8'));
@@ -70,6 +71,7 @@ app.use((req, res, next) => {
   next();
 });
 
+N.setup(config, () => (process.env.PUBLIC_URL || `http://localhost:${Number(process.env.PORT) || 3000}`).replace(/\/$/, ''));
 const baseUrl = (req) => (process.env.PUBLIC_URL || `${req.protocol}://${req.get('host')}`).replace(/\/$/, '');
 
 // ---------- Stripe webhook (needs the raw body, so it is registered before express.json) ----------
@@ -113,6 +115,7 @@ function paid(orderId, session) {
       stripe.paymentIntents.update(o.payment_intent, { description: `Eastern Lake pedido ${o.number} — ${o.customer_name}` })
         .catch(() => {});
     }
+    N.orderConfirmed(o); // email: "we got your order"
   }
   return o;
 }
@@ -184,6 +187,7 @@ app.post('/api/checkout', async (req, res) => {
       locale: lang,
       client_reference_id: id,
       metadata: { order_id: id },
+      customer_email: customer.email,
       payment_intent_data: { metadata: { order_id: id }, description: `Eastern Lake — ${customer.name}` },
       success_url: `${base}/pedido.html?o=${id}`,
       cancel_url: `${base}/ordenar?pago=cancelado`,
@@ -197,6 +201,15 @@ app.post('/api/checkout', async (req, res) => {
     console.error('Checkout failed', e);
     res.status(500).json({ error: 'No pudimos iniciar el pago. Intenta otra vez o llámanos.' });
   }
+});
+
+// Short link used in texts and emails: /o/<first 12 characters of the order id>
+app.get('/o/:code', (req, res) => {
+  const code = String(req.params.code).toLowerCase();
+  if (!/^[0-9a-f]{12}$/.test(code)) return res.redirect('/ordenar');
+  const like = `${code.slice(0, 8)}-${code.slice(8, 12)}%`;
+  const row = db.prepare('SELECT id FROM orders WHERE id LIKE ? LIMIT 1').get(like);
+  res.redirect(row ? `/pedido.html?o=${row.id}` : '/ordenar');
 });
 
 const lastCheck = new Map();
@@ -285,7 +298,10 @@ app.post('/api/kitchen/orders/:id/status', staff, (req, res) => {
   const o = O.getOrder(req.params.id);
   if (!o || !['paid', 'ready', 'done'].includes(o.status)) return res.status(404).json({ error: 'Orden no encontrada' });
   const now = new Date().toISOString();
-  if (to === 'ready') db.prepare("UPDATE orders SET status = 'ready', ready_at = ? WHERE id = ?").run(now, o.id);
+  if (to === 'ready') {
+    db.prepare("UPDATE orders SET status = 'ready', ready_at = ? WHERE id = ?").run(now, o.id);
+    if (o.status === 'paid') N.orderReady(O.getOrder(o.id)); // email: "your order is ready" (sent once)
+  }
   else if (to === 'done') db.prepare("UPDATE orders SET status = 'done', done_at = ? WHERE id = ?").run(now, o.id);
   else if (to === 'paid') db.prepare("UPDATE orders SET status = 'paid', ready_at = NULL, done_at = NULL WHERE id = ?").run(o.id);
   else return res.status(400).json({ error: 'Estado inválido' });
