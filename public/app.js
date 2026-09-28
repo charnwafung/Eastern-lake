@@ -225,6 +225,9 @@
   // ---------------- Item sheet ----------------
   const itemSheet = $('#itemSheet');
   let sheetQty = 1;
+  // Optional change lists (sin/solo, aparte, extra pieces) stay tucked behind one button so most people skip them.
+  const isChange = (g) => !g.required && (g.type === 'multi' || g.type === 'count');
+  let showChanges = false;
   function openItem(id, line) {
     const it = items.get(id); editingKey = line?.key || null;
     itemSheet.dataset.id = id;
@@ -258,6 +261,9 @@
       }
       html += `</div><div class="formerr" data-err>${t('errOption')}</div></fieldset>`;
     }
+    const hasChanges = (it.options || []).some(isChange);
+    showChanges = hasChanges && (it.options || []).some((g) => { if (!isChange(g)) return false; const v = line?.options?.[g.id]; return Array.isArray(v) ? v.length > 0 : v && typeof v === 'object' ? Object.values(v).some(Boolean) : false; });
+    if (hasChanges) html += `<button type="button" class="changes-btn" id="changesBtn">✎ ${esc(t('wantChanges'))} <span>${esc(t('optionalParen'))}</span></button>`;
     $('#itemBody').innerHTML = html;
     for (const g of it.options || []) if (g.type === 'count') paintCounts(itemSheet.querySelector(`fieldset[data-opt="${g.id}"]`), g);
     $('#itemBody').scrollTop = 0;
@@ -298,7 +304,7 @@
     let revealed = null; let pending = false; // step by step: wait until earlier required questions are answered
     for (const g of groups) {
       const fs = itemSheet.querySelector(`fieldset[data-opt="${g.id}"]`);
-      const vis = !pending && ELOptions.isVisible(groups, g, sel);
+      const vis = !pending && ELOptions.isVisible(groups, g, sel) && (showChanges || !isChange(g));
       if (vis && g.required && sel[g.id] == null) pending = true;
       if (vis && fs.hidden && !revealed) revealed = fs;
       fs.hidden = !vis;
@@ -309,6 +315,7 @@
         if (!on) lab.querySelector('input').checked = false;
       }
     }
+    const cb = $('#changesBtn'); if (cb) cb.hidden = showChanges;
     if (revealed && scroll) setTimeout(() => {
       const body = $('#itemBody');
       const y = revealed.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop - 12;
@@ -350,6 +357,7 @@
     });
   }
   $('#itemBody').addEventListener('click', (e) => {
+    if (e.target.closest('#changesBtn')) { showChanges = true; syncGroups(true); return; }
     const b = e.target.closest('[data-cnt]'); if (!b) return;
     const fs = b.closest('fieldset'); const g = currentItem().options.find((o) => o.id === fs.dataset.opt);
     const rows = [...fs.querySelectorAll('.count-row')]; const row = b.closest('.count-row');

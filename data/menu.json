@@ -364,19 +364,8 @@
      "en": "Pack separately"
     },
     "hint": {
-     "es": "Opcional · escoge uno · $2.50",
-     "en": "Optional · pick one · $2.50"
-    },
-    "showIf": {
-     "group": "acomp",
-     "in": [
-      "arroz-papas",
-      "arroz-tostones",
-      "arroz-sin-papas",
-      "blanco-papas",
-      "blanco-tostones",
-      "blanco-sin-papas"
-     ]
+     "es": "Opcional · puedes escoger más de uno · $2.50 cada uno",
+     "en": "Optional · pick as many as you like · $2.50 each"
     },
     "choices": [
      {
@@ -396,10 +385,7 @@
         "arroz-papas",
         "blanco-papas"
        ]
-      },
-      "conflicts": [
-       "carne-aparte"
-      ]
+      }
      },
      {
       "id": "carne-aparte",
@@ -412,9 +398,29 @@
        "es": "Carne aparte",
        "en": "Meat on the side"
       },
-      "conflicts": [
-       "papas-aparte"
-      ]
+      "showIf": {
+       "group": "acomp",
+       "in": [
+        "arroz-papas",
+        "arroz-tostones",
+        "arroz-sin-papas",
+        "blanco-papas",
+        "blanco-tostones",
+        "blanco-sin-papas"
+       ]
+      }
+     },
+     {
+      "id": "salsa-aparte",
+      "label": {
+       "es": "Salsa aparte",
+       "en": "Sauce on the side"
+      },
+      "summary": {
+       "es": "Salsa aparte",
+       "en": "Sauce on the side"
+      },
+      "price": 250
      }
     ]
    }
@@ -3953,7 +3959,68 @@
      "num": 33,
      "name": "Pollo con Brócoli",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-brocoli",
+         "label": {
+          "es": "Sin brócoli",
+          "en": "No broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-brocoli"
+         ]
+        },
+        {
+         "id": "solo-brocoli",
+         "label": {
+          "es": "Solo brócoli",
+          "en": "Only broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-brocoli"
+         ]
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "34",
@@ -3971,8 +4038,8 @@
         "en": "Dish changes"
        },
        "hint": {
-        "es": "Opcional",
-        "en": "Optional"
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
        },
        "choices": [
         {
@@ -3981,7 +4048,21 @@
           "es": "Sin pimiento",
           "en": "No peppers"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
         },
         {
          "id": "sin-cebolla",
@@ -3989,7 +4070,21 @@
           "es": "Sin cebolla",
           "en": "No onions"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
         }
        ]
       }
@@ -4011,8 +4106,8 @@
         "en": "Dish changes"
        },
        "hint": {
-        "es": "Opcional",
-        "en": "Optional"
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
        },
        "choices": [
         {
@@ -4043,25 +4138,75 @@
         "en": "Dish changes"
        },
        "hint": {
-        "es": "Opcional",
-        "en": "Optional"
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
        },
        "choices": [
-        {
-         "id": "sin-cebolla",
-         "label": {
-          "es": "Sin cebolla",
-          "en": "No onions"
-         },
-         "price": 0
-        },
         {
          "id": "sin-zanahoria",
          "label": {
           "es": "Sin zanahoria",
           "en": "No carrots"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
         },
         {
          "id": "sin-empanada",
@@ -4128,10 +4273,76 @@
        },
        "choices": [
         {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
          "id": "sin-pique",
          "label": {
           "es": "Sin pique",
-          "en": "Not spicy"
+          "en": "No hot sauce"
          },
          "price": 0
         }
@@ -4144,7 +4355,68 @@
      "num": 39,
      "name": "Pollo con Jengibre",
      "price": 1250,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jengibre",
+         "label": {
+          "es": "Sin jengibre",
+          "en": "No ginger"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jengibre"
+         ]
+        },
+        {
+         "id": "solo-jengibre",
+         "label": {
+          "es": "Solo jengibre",
+          "en": "Only ginger"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jengibre"
+         ]
+        },
+        {
+         "id": "sin-cebollin",
+         "label": {
+          "es": "Sin cebollín",
+          "en": "No scallions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebollin"
+         ]
+        },
+        {
+         "id": "solo-cebollin",
+         "label": {
+          "es": "Solo cebollín",
+          "en": "Only scallions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebollin"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "40",
@@ -4162,8 +4434,8 @@
         "en": "Dish changes"
        },
        "hint": {
-        "es": "Opcional",
-        "en": "Optional"
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
        },
        "choices": [
         {
@@ -4183,21 +4455,256 @@
      "num": 41,
      "name": "Pollo con Setas",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-setas",
+         "label": {
+          "es": "Sin setas",
+          "en": "No mushrooms"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-setas"
+         ]
+        },
+        {
+         "id": "solo-setas",
+         "label": {
+          "es": "Solo setas",
+          "en": "Only mushrooms"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-setas"
+         ]
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "42",
      "num": 42,
      "name": "Pollo con Curry",
      "price": 1250,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
+        },
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        },
+        {
+         "id": "sin-pique",
+         "label": {
+          "es": "Sin pique",
+          "en": "No hot sauce"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "43",
      "num": 43,
      "name": "Chow Suey de Pollo",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-pollo",
+         "label": {
+          "es": "Sin pollo",
+          "en": "No chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pollo"
+         ]
+        },
+        {
+         "id": "solo-pollo",
+         "label": {
+          "es": "Solo pollo",
+          "en": "Only chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pollo"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "44",
@@ -4231,25 +4738,75 @@
         "en": "Dish changes"
        },
        "hint": {
-        "es": "Opcional",
-        "en": "Optional"
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
        },
        "choices": [
-        {
-         "id": "sin-cebolla",
-         "label": {
-          "es": "Sin cebolla",
-          "en": "No onions"
-         },
-         "price": 0
-        },
         {
          "id": "sin-zanahoria",
          "label": {
           "es": "Sin zanahoria",
           "en": "No carrots"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
         }
        ]
       }
@@ -4270,31 +4827,28 @@
      "optionSet": "combo",
      "optionsAfter": [
       {
-       "id": "salsa",
-       "type": "single",
-       "required": true,
-       "default": "regular",
+       "id": "plato",
+       "type": "multi",
+       "required": false,
        "label": {
-        "es": "Salsa",
-        "en": "Sauce"
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
        },
        "choices": [
-        {
-         "id": "regular",
-         "label": {
-          "es": "Salsa regular",
-          "en": "Regular sauce"
-         },
-         "price": 0,
-         "summary": null
-        },
         {
          "id": "sin-salsa",
          "label": {
           "es": "Sin salsa",
           "en": "No sauce"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "extra-salsa"
+         ]
         },
         {
          "id": "extra-salsa",
@@ -4302,7 +4856,10 @@
           "es": "Extra salsa",
           "en": "Extra sauce"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "sin-salsa"
+         ]
         }
        ]
       }
@@ -4313,7 +4870,68 @@
      "num": 48,
      "name": "Carne Ahumada en Salsa",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
+        },
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "49",
@@ -4327,7 +4945,68 @@
      "num": 50,
      "name": "Carne Ahumada con Brócoli",
      "price": 1295,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-brocoli",
+         "label": {
+          "es": "Sin brócoli",
+          "en": "No broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-brocoli"
+         ]
+        },
+        {
+         "id": "solo-brocoli",
+         "label": {
+          "es": "Solo brócoli",
+          "en": "Only broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-brocoli"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "51",
@@ -4393,8 +5072,8 @@
         "en": "Dish changes"
        },
        "hint": {
-        "es": "Opcional",
-        "en": "Optional"
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
        },
        "choices": [
         {
@@ -4403,7 +5082,21 @@
           "es": "Sin pimiento",
           "en": "No peppers"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
         },
         {
          "id": "sin-cebolla",
@@ -4411,7 +5104,21 @@
           "es": "Sin cebolla",
           "en": "No onions"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
         }
        ]
       }
@@ -4422,35 +5129,392 @@
      "num": 54,
      "name": "Res con Jengibre",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jengibre",
+         "label": {
+          "es": "Sin jengibre",
+          "en": "No ginger"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jengibre"
+         ]
+        },
+        {
+         "id": "solo-jengibre",
+         "label": {
+          "es": "Solo jengibre",
+          "en": "Only ginger"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jengibre"
+         ]
+        },
+        {
+         "id": "sin-cebollin",
+         "label": {
+          "es": "Sin cebollín",
+          "en": "No scallions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebollin"
+         ]
+        },
+        {
+         "id": "solo-cebollin",
+         "label": {
+          "es": "Solo cebollín",
+          "en": "Only scallions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebollin"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "55",
      "num": 55,
      "name": "Res con Brócoli",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-brocoli",
+         "label": {
+          "es": "Sin brócoli",
+          "en": "No broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-brocoli"
+         ]
+        },
+        {
+         "id": "solo-brocoli",
+         "label": {
+          "es": "Solo brócoli",
+          "en": "Only broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-brocoli"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "56",
      "num": 56,
      "name": "Res con Setas",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-setas",
+         "label": {
+          "es": "Sin setas",
+          "en": "No mushrooms"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-setas"
+         ]
+        },
+        {
+         "id": "solo-setas",
+         "label": {
+          "es": "Solo setas",
+          "en": "Only mushrooms"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-setas"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "57",
      "num": 57,
      "name": "Res con Curry",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
+        },
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        },
+        {
+         "id": "sin-pique",
+         "label": {
+          "es": "Sin pique",
+          "en": "No hot sauce"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "58",
      "num": 58,
      "name": "Chow Suey de Res",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-res",
+         "label": {
+          "es": "Sin res",
+          "en": "No beef"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-res"
+         ]
+        },
+        {
+         "id": "solo-res",
+         "label": {
+          "es": "Solo res",
+          "en": "Only beef"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-res"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "59",
@@ -4473,21 +5537,204 @@
      "num": 60,
      "name": "Camarón con Jengibre",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jengibre",
+         "label": {
+          "es": "Sin jengibre",
+          "en": "No ginger"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jengibre"
+         ]
+        },
+        {
+         "id": "solo-jengibre",
+         "label": {
+          "es": "Solo jengibre",
+          "en": "Only ginger"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jengibre"
+         ]
+        },
+        {
+         "id": "sin-cebollin",
+         "label": {
+          "es": "Sin cebollín",
+          "en": "No scallions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebollin"
+         ]
+        },
+        {
+         "id": "solo-cebollin",
+         "label": {
+          "es": "Solo cebollín",
+          "en": "Only scallions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebollin"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "61",
      "num": 61,
      "name": "Camarones con Brócoli",
      "price": 1375,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-brocoli",
+         "label": {
+          "es": "Sin brócoli",
+          "en": "No broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-brocoli"
+         ]
+        },
+        {
+         "id": "solo-brocoli",
+         "label": {
+          "es": "Solo brócoli",
+          "en": "Only broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-brocoli"
+         ]
+        },
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "62",
      "num": 62,
      "name": "Camarones en Salsa Langosta",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-jamon",
+         "label": {
+          "es": "Sin jamón",
+          "en": "No ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-jamon"
+         ]
+        },
+        {
+         "id": "solo-jamon",
+         "label": {
+          "es": "Solo jamón",
+          "en": "Only ham"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-jamon"
+         ]
+        },
+        {
+         "id": "sin-huevo",
+         "label": {
+          "es": "Sin huevo",
+          "en": "No egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-huevo"
+         ]
+        },
+        {
+         "id": "solo-huevo",
+         "label": {
+          "es": "Solo huevo",
+          "en": "Only egg"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-huevo"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "63",
@@ -4526,7 +5773,98 @@
      "num": 64,
      "name": "Camarones Enchilado",
      "price": 1350,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        },
+        {
+         "id": "sin-cebolla",
+         "label": {
+          "es": "Sin cebolla",
+          "en": "No onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
+        },
+        {
+         "id": "sin-pique",
+         "label": {
+          "es": "Sin pique",
+          "en": "No hot sauce"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "65",
@@ -4544,17 +5882,53 @@
         "en": "Dish changes"
        },
        "hint": {
-        "es": "Opcional",
-        "en": "Optional"
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
        },
        "choices": [
+        {
+         "id": "sin-pimiento",
+         "label": {
+          "es": "Sin pimiento",
+          "en": "No peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pimiento"
+         ]
+        },
+        {
+         "id": "solo-pimiento",
+         "label": {
+          "es": "Solo pimiento",
+          "en": "Only peppers"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pimiento"
+         ]
+        },
         {
          "id": "sin-cebolla",
          "label": {
           "es": "Sin cebolla",
           "en": "No onions"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-cebolla"
+         ]
+        },
+        {
+         "id": "solo-cebolla",
+         "label": {
+          "es": "Solo cebolla",
+          "en": "Only onions"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cebolla"
+         ]
         },
         {
          "id": "sin-zanahoria",
@@ -4562,7 +5936,21 @@
           "es": "Sin zanahoria",
           "en": "No carrots"
          },
-         "price": 0
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
         }
        ]
       }
@@ -4612,35 +6000,436 @@
      "num": 68,
      "name": "Filete de Pescado con Brócoli",
      "price": 1650,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-zanahoria",
+         "label": {
+          "es": "Sin zanahoria",
+          "en": "No carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-zanahoria"
+         ]
+        },
+        {
+         "id": "solo-zanahoria",
+         "label": {
+          "es": "Solo zanahoria",
+          "en": "Only carrots"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-zanahoria"
+         ]
+        },
+        {
+         "id": "sin-brocoli",
+         "label": {
+          "es": "Sin brócoli",
+          "en": "No broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-brocoli"
+         ]
+        },
+        {
+         "id": "solo-brocoli",
+         "label": {
+          "es": "Solo brócoli",
+          "en": "Only broccoli"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-brocoli"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "69",
      "num": 69,
      "name": "Chow Suey de Camarones",
      "price": 1375,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional",
+        "en": "Optional"
+       },
+       "choices": [
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "70",
      "num": 70,
      "name": "Egg Fu Young de Camarones",
      "price": 1595,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        },
+        {
+         "id": "sin-camaron",
+         "label": {
+          "es": "Sin camarón",
+          "en": "No shrimp"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-camaron"
+         ]
+        },
+        {
+         "id": "solo-camaron",
+         "label": {
+          "es": "Solo camarón",
+          "en": "Only shrimp"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-camaron"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "71",
      "num": 71,
      "name": "Egg Fu Young Especial",
      "price": 1595,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-camaron",
+         "label": {
+          "es": "Sin camarón",
+          "en": "No shrimp"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-camaron"
+         ]
+        },
+        {
+         "id": "solo-camaron",
+         "label": {
+          "es": "Solo camarón",
+          "en": "Only shrimp"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-camaron"
+         ]
+        },
+        {
+         "id": "sin-pollo",
+         "label": {
+          "es": "Sin pollo",
+          "en": "No chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pollo"
+         ]
+        },
+        {
+         "id": "solo-pollo",
+         "label": {
+          "es": "Solo pollo",
+          "en": "Only chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pollo"
+         ]
+        },
+        {
+         "id": "sin-res",
+         "label": {
+          "es": "Sin res",
+          "en": "No beef"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-res"
+         ]
+        },
+        {
+         "id": "solo-res",
+         "label": {
+          "es": "Solo res",
+          "en": "Only beef"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-res"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        }
+       ]
+      }
+     ]
     },
     {
      "id": "72",
      "num": 72,
      "name": "Chow Suey Especial",
      "price": 1375,
-     "optionSet": "combo"
+     "optionSet": "combo",
+     "optionsAfter": [
+      {
+       "id": "plato",
+       "type": "multi",
+       "required": false,
+       "label": {
+        "es": "Cambios al plato",
+        "en": "Dish changes"
+       },
+       "hint": {
+        "es": "Opcional · puedes escoger más de uno",
+        "en": "Optional · pick as many as you like"
+       },
+       "choices": [
+        {
+         "id": "sin-camaron",
+         "label": {
+          "es": "Sin camarón",
+          "en": "No shrimp"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-camaron"
+         ]
+        },
+        {
+         "id": "solo-camaron",
+         "label": {
+          "es": "Solo camarón",
+          "en": "Only shrimp"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-camaron"
+         ]
+        },
+        {
+         "id": "sin-pollo",
+         "label": {
+          "es": "Sin pollo",
+          "en": "No chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-pollo"
+         ]
+        },
+        {
+         "id": "solo-pollo",
+         "label": {
+          "es": "Solo pollo",
+          "en": "Only chicken"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-pollo"
+         ]
+        },
+        {
+         "id": "sin-res",
+         "label": {
+          "es": "Sin res",
+          "en": "No beef"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-res"
+         ]
+        },
+        {
+         "id": "solo-res",
+         "label": {
+          "es": "Solo res",
+          "en": "Only beef"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-res"
+         ]
+        },
+        {
+         "id": "sin-cerdo",
+         "label": {
+          "es": "Sin cerdo",
+          "en": "No pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-cerdo"
+         ]
+        },
+        {
+         "id": "solo-cerdo",
+         "label": {
+          "es": "Solo cerdo",
+          "en": "Only pork"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-cerdo"
+         ]
+        },
+        {
+         "id": "sin-vegetal",
+         "label": {
+          "es": "Sin vegetal",
+          "en": "No vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "solo-vegetal"
+         ]
+        },
+        {
+         "id": "solo-vegetal",
+         "label": {
+          "es": "Solo vegetal",
+          "en": "Only vegetables"
+         },
+         "price": 0,
+         "conflicts": [
+          "sin-vegetal"
+         ]
+        }
+       ]
+      }
+     ]
     }
    ]
   },

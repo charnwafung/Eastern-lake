@@ -311,3 +311,7 @@ body.locked { position: fixed; left: 0; right: 0; overflow: hidden; }
 .sheet-body { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 dialog.sheet { overscroll-behavior: contain; }
 .catnav-inner { overscroll-behavior-x: contain; scroll-snap-type: none; }
+
+/* "¿Quieres hacer cambios?" — quiet button that reveals the optional change lists */
+.changes-btn { display: block; width: 100%; margin: 14px 0 6px; background: none; border: 1.5px dashed #cfc6b3; border-radius: 12px; padding: 14px; color: var(--muted); font-weight: 600; font-size: .95rem; }
+.changes-btn span { font-weight: 400; }
