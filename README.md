@@ -78,6 +78,16 @@ Locally, without a key, emails are saved as files in `var/outbox/` so you can op
 
 ---
 
+## Private mode (password page)
+
+Kitchen screen → **Tienda** → **Sitio privado**: type a password and tap **Poner el sitio en privado**. Every customer
+page then shows a "Volvemos pronto" page with a password box and your phone numbers, so nobody can order while you
+make changes. Type the password there to see and test the site yourself (it stays unlocked on that device for 30 days,
+or until the password changes). The kitchen screen, the Stripe webhook and `/healthz` keep working. Tap
+**Abrir el sitio al público** when you're done. Only managers can do this, and it's recorded in the change history.
+
+---
+
 ## 3. Put it online (Render)
 
 1. Put this folder in a GitHub repository (private is fine).

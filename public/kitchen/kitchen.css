@@ -292,3 +292,4 @@ textarea { border: 1.5px solid var(--line); border-radius: 10px; padding: 10px; 
 .nbadge { font-size: .8rem; font-weight: 700; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
 .nbadge.ok { background: #e2eee9; color: #1f5e52; }
 .nbadge.no { background: #fde2dd; color: #a4321e; }
+#gPw { width: 100%; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px; font: inherit; background: #fff; color: var(--ink); margin: 6px 0 8px; }

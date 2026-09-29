@@ -536,7 +536,13 @@
         <h4>${tr('Días cerrados (feriados)', 'Closed days (holidays)')}</h4>
         ${store.closedDays.map((c) => `<div class="hol"><span>${esc(fmtDate(c.date))}${c.label ? ` · ${esc(c.label)}` : ''}</span><button type="button" data-unclose="${c.date}" aria-label="${tr('Quitar', 'Remove')}">✕</button></div>`).join('') || `<p class="lbl">${tr('Ninguno.', 'None.')}</p>`}
         <div class="addclosed"><input type="date" id="cDate"><input id="cLabel" maxlength="40" placeholder="${tr('Motivo (opcional)', 'Reason (optional)')}"><button type="button" class="kbtn" data-s="addclosed">${tr('Añadir', 'Add')}</button></div></div>
-      <div class="box"><h4>PINs</h4>
+      <div class="box"><h4>${tr('Sitio privado', 'Private mode')}</h4>
+        ${store.gate.on ? `<div class="bigstat warn">${tr('Privado · los clientes ven una página con contraseña', 'Private · customers see a password page')}</div>`
+          : `<p class="lbl">${tr('Pide una contraseña para entrar a la página, para que nadie ordene mientras haces cambios. La cocina sigue funcionando.', 'Asks for a password to open the website, so nobody orders while you make changes. The kitchen keeps working.')}</p>`}
+        <input id="gPw" type="password" autocomplete="new-password" maxlength="40" placeholder="${store.gate.hasPassword ? tr('Nueva contraseña (opcional)', 'New password (optional)') : tr('Escribe una contraseña', 'Choose a password')}">
+        <button type="button" class="kbtn${store.gate.on ? ' ghost' : ''}" data-s="gate">${store.gate.on ? tr('Abrir el sitio al público', 'Open the site to the public') : tr('Poner el sitio en privado', 'Make the site private')}</button>
+        ${store.gate.on ? `<button type="button" class="linkbtn" data-s="gatepw">${tr('Solo cambiar la contraseña', 'Just change the password')}</button>` : ''}
+        <h4>PINs</h4>
         <div class="pinrow"><span>${tr('Empleado', 'Employee')}</span><button type="button" class="linkbtn" data-pin="employee">${tr('Cambiar', 'Change')}</button></div>
         <div class="pinrow"><span>${tr('Gerente', 'Manager')}</span><button type="button" class="linkbtn" data-pin="manager">${tr('Cambiar', 'Change')}</button></div>
         <h4>${tr('Historial de cambios', 'Change history')}</h4>
@@ -561,6 +567,15 @@
       if (un) return await storePost({ removeClosed: un });
       const s = t.closest('[data-s]')?.dataset.s;
       if (s === 'resume') await settingsPost({ paused: false });
+      else if (s === 'gate') {
+        const pw = $('#gPw').value.trim();
+        if (!store.gate.on && !pw && !store.gate.hasPassword) throw new Error(tr('Escribe una contraseña primero.', 'Choose a password first.'));
+        await storePost({ gate: { on: !store.gate.on, ...(pw && { password: pw }) } });
+      } else if (s === 'gatepw') {
+        const pw = $('#gPw').value.trim();
+        if (!pw) throw new Error(tr('Escribe la nueva contraseña.', 'Type the new password.'));
+        await storePost({ gate: { password: pw } });
+      }
       else if (s === 'banner') await storePost({ banner: { text: $('#bText').value, show: $('#bShow').checked } });
       else if (s === 'hours') { await storePost({ hours: hoursDraft }); hoursDraft = null; renderStore(); }
       else if (s === 'addclosed') {

@@ -8,6 +8,7 @@ const { storeStatus, partsIn } = require('./src/time');
 const O = require('./src/orders');
 const A = require('./src/admin');
 const N = require('./src/notify');
+const G = require('./src/gate');
 
 const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'config.json'), 'utf8'));
 const menu = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'menu.json'), 'utf8'));
@@ -99,6 +100,29 @@ app.post('/webhook/stripe', express.raw({ type: 'application/json' }), (req, res
 });
 
 app.use(express.json({ limit: '64kb' }));
+
+// ---------- Private mode (password page while the site is being adjusted) ----------
+const gateAttempts = new Map();
+app.post('/api/gate', (req, res) => {
+  const a = gateAttempts.get(req.ip) || { n: 0, until: 0 };
+  if (a.until > Date.now()) return res.status(429).json({ error: 'Demasiados intentos. Espera un minuto.' });
+  if (!G.check(req.body?.password)) {
+    a.n += 1; if (a.n >= 5) { a.until = Date.now() + 60000; a.n = 0; }
+    gateAttempts.set(req.ip, a);
+    return res.status(401).json({ error: 'Contraseña incorrecta' });
+  }
+  gateAttempts.delete(req.ip);
+  res.set('Set-Cookie', `el_gate=${encodeURIComponent(G.token(SESSION_SECRET))}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${60 * 60 * 24 * 30}${PROD ? '; Secure' : ''}`);
+  res.json({ ok: true });
+});
+app.use((req, res, next) => {
+  if (!G.info().on || G.isOpen(req.path)) return next();
+  const c = (req.get('cookie') || '').split(/;\s*/).map((x) => x.split('=')).find(([k]) => k === 'el_gate')?.[1];
+  if (G.valid(decodeURIComponent(c || ''), SESSION_SECRET)) return next();
+  res.set('Cache-Control', 'no-store');
+  if (req.path.startsWith('/api/')) return res.status(403).json({ error: 'El sitio está en modo privado.', gate: true });
+  res.status(503).type('html').send(G.page());
+});
 
 function paid(orderId, session) {
   const before = O.getOrder(orderId);
@@ -398,7 +422,7 @@ app.post('/api/kitchen/menu/best', manager, (req, res) => {
 });
 
 // Store: hours, closed days, homepage banner, PINs, change log
-const storeInfo = () => ({ hours: weekHours(), closedDays: closedDays(), banner: getSetting('banner', { text: '', show: false }), settings: settings(), status: status(), log: A.recentLog() });
+const storeInfo = () => ({ gate: G.info(), hours: weekHours(), closedDays: closedDays(), banner: getSetting('banner', { text: '', show: false }), settings: settings(), status: status(), log: A.recentLog() });
 app.get('/api/kitchen/store', manager, (req, res) => { res.set('Cache-Control', 'no-store'); res.json(storeInfo()); });
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
 const DAYS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
@@ -430,6 +454,17 @@ app.post('/api/kitchen/store', manager, (req, res) => {
     const text = String(b.banner.text || '').replace(/\s+/g, ' ').trim().slice(0, 140);
     setSetting('banner', { text, show: !!b.banner.show && !!text });
     A.log(req.role, b.banner.show && text ? `Aviso en la página: “${text}”` : 'Quitó el aviso de la página');
+  }
+  if (b.gate) {
+    const pw = b.gate.password == null ? '' : String(b.gate.password);
+    if (pw) {
+      if (pw.length < 4 || pw.length > 40) return res.status(400).json({ error: 'La contraseña debe tener de 4 a 40 caracteres.' });
+      G.setPassword(pw); A.log(req.role, 'Cambió la contraseña del sitio privado');
+    }
+    if (typeof b.gate.on === 'boolean' && b.gate.on !== G.info().on) {
+      if (b.gate.on && !G.info().hasPassword) return res.status(400).json({ error: 'Escribe una contraseña primero.' });
+      G.setOn(b.gate.on); A.log(req.role, b.gate.on ? 'Puso el sitio en modo privado (con contraseña)' : 'Abrió el sitio al público');
+    }
   }
   if (b.pin) {
     const role = b.pin.role; const pin = String(b.pin.value || '');
