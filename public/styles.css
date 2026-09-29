@@ -315,3 +315,21 @@ dialog.sheet { overscroll-behavior: contain; }
 /* "¿Quieres hacer cambios?" — quiet button that reveals the optional change lists */
 .changes-btn { display: block; width: 100%; margin: 14px 0 6px; background: none; border: 1.5px dashed #cfc6b3; border-radius: 12px; padding: 14px; color: var(--muted); font-weight: 600; font-size: .95rem; }
 .changes-btn span { font-weight: 400; }
+
+/* Cart on phones: use (almost) the full screen so the order and form get the most room.
+   iPhone Safari's toolbars eat into the old 92% height, which left only a small window. */
+.sheet-body { min-height: 0; }
+@media (max-width: 639px) {
+  #cartSheet { height: calc(100vh - 16px); height: calc(100dvh - 16px); max-height: none; }
+  #cartSheet .sheet-head { padding: 14px 18px 10px; }
+  #cartSheet .sheet-body { padding: 12px 18px; }
+  #cartSheet .sheet-foot { padding: 10px 18px calc(10px + var(--safe-b)); }
+  #cartSheet .secure { margin-top: 6px; font-size: .74rem; }
+  /* The whole cart scrolls as one page (the title scrolls away) and only the Pagar bar stays pinned,
+     instead of a small scrolling box squeezed between a fixed title and a fixed footer. */
+  #cartSheet[open] { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  #cartSheet > * { flex-shrink: 0; }
+  #cartSheet .sheet-body { overflow: visible; flex: 1 0 auto; }
+  #cartSheet .field, #cartSheet .choice { scroll-margin-bottom: 130px; }
+  #cartSheet .sheet-foot { position: sticky; bottom: 0; margin-top: auto; z-index: 2; box-shadow: 0 -8px 18px rgba(23, 33, 29, .06); }
+}

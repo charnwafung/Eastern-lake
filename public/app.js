@@ -438,7 +438,7 @@
   }
 
   const cartSheet = $('#cartSheet');
-  function openCart() { renderCart(); cartSheet.showModal(); $('#cartBody').scrollTop = 0; }
+  function openCart() { renderCart(); cartSheet.showModal(); $('#cartBody').scrollTop = 0; cartSheet.scrollTop = 0; }
   $('#openCart').onclick = openCart;
 
   function renderCart() {
