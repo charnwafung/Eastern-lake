@@ -167,10 +167,11 @@
     }
   }
 
-  function browserPrint(o) {
+  function browserPrint(o, sample = false) {
     const out = [];
     const W = 42; const rule = '-'.repeat(W);
     const hmEs = (iso) => new Intl.DateTimeFormat('es-PR', { timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true }).format(new Date(iso));
+    if (sample) out.push('*** ORDEN DE PRUEBA - NO PREPARAR ***', '');
     out.push('EASTERN LAKE', 'ORDEN EN LINEA - PARA RECOGER', rule);
     if (o) {
       out.push(`ORDEN ${o.number}`, `RECOGER: ${o.pickupType === 'asap' ? 'LO ANTES POSIBLE ~' : 'PROGRAMADA '}${hmEs(o.pickupAt)}`, `Cliente: ${o.name}`, `Tel: ${o.phone}`, rule);
@@ -181,6 +182,7 @@
       }
       if (o.notes) out.push(rule, 'NOTA DE LA ORDEN:', o.notes);
       out.push(rule, `TOTAL ${money(o.total)} - PAGADO`);
+      if (sample) out.push('', '*** ORDEN DE PRUEBA - NO PREPARAR ***');
     } else out.push('PRUEBA DE IMPRESION');
     $('#printArea').textContent = out.join('\n');
     window.print();
@@ -397,11 +399,21 @@
     drawer.showModal();
   }
   $('#prnConnect').onclick = connectPrinter;
+  // Test print = a pretend order printed exactly like a real one (copies setting included).
   $('#prnTest').onclick = async () => {
+    try {
+      const o = KPrint.sampleOrder();
+      for (let i = 0; i < prefs.copies; i++) {
+        const label = prefs.copies > 1 ? `Copia ${i + 1} de ${prefs.copies}` : '';
+        await KPrint.print(KPrint.orderTicket(o, { ascii: prefs.ascii, copyLabel: label, taxLabel: data.taxLabel || 'IVU 7%', sample: true }));
+      }
+    } catch (err) { toastModal(tr('No se pudo imprimir', 'Could not print'), err.message); }
+  };
+  $('#prnAccents').onclick = async () => {
     try { await KPrint.print(KPrint.testTicket({ ascii: prefs.ascii })); }
     catch (err) { toastModal(tr('No se pudo imprimir', 'Could not print'), err.message); }
   };
-  $('#browserPrintTest').onclick = () => browserPrint(null);
+  $('#browserPrintTest').onclick = () => browserPrint(KPrint.sampleOrder(), true);
   $('#autoPrint').onchange = (e) => { prefs.autoPrint = e.target.checked; savePrefs(); render(); if (prefs.autoPrint) autoPrint(); };
   $('#asciiPrint').onchange = (e) => { prefs.ascii = e.target.checked; savePrefs(); };
   $('#copies').onchange = (e) => { prefs.copies = Number(e.target.value); savePrefs(); };

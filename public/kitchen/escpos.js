@@ -59,8 +59,10 @@ window.KPrint = (() => {
   const hm = (iso) => new Intl.DateTimeFormat('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true }).format(new Date(iso));
   const dt = (iso) => `${new Intl.DateTimeFormat('en-GB', { timeZone: TZ, day: '2-digit', month: '2-digit', year: '2-digit' }).format(new Date(iso))} ${hm(iso)}`;
 
-  function orderTicket(o, { ascii = false, reprint = false, copyLabel = '', taxLabel = 'IVU' } = {}) {
+  function orderTicket(o, { ascii = false, reprint = false, copyLabel = '', taxLabel = 'IVU', sample = false } = {}) {
     const t = new Ticket({ ascii });
+    const sampleBanner = () => t.align('center').invert(true).bold(true).size(1, 2).line(' ORDEN DE PRUEBA - NO PREPARAR ').size(1, 1).bold(false).invert(false);
+    if (sample) { sampleBanner(); t.feed(1); }
     t.align('center').bold(true).size(2, 1).line('EASTERN LAKE').size(1, 1).bold(false);
     t.line('ORDEN EN LINEA - PARA RECOGER');
     if (reprint) t.bold(true).line('*** REIMPRESION ***').bold(false);
@@ -96,7 +98,25 @@ window.KPrint = (() => {
     t.bold(true).size(1, 2).pair('TOTAL', money(o.total)).size(1, 1).bold(false);
     t.feed(1).align('center').bold(true).line('*** PAGADO CON TARJETA (STRIPE) ***').bold(false);
     t.line(`${count} articulo${count === 1 ? '' : 's'}`);
+    if (sample) { t.feed(1); sampleBanner(); }
     return t.cut().bytes();
+  }
+
+  // A realistic pretend order, printed exactly like a real one (with "PRUEBA" banners so nobody cooks it).
+  function sampleOrder() {
+    const now = Date.now();
+    const items = [
+      { qty: 1, num: 36, name: 'Pollo Agridulce', options: [{ label: 'Con arroz frito y papas' }, { label: 'Sin cebolla' }, { label: 'Sin empanada' }, { label: 'Papas aparte' }], total: 1500 },
+      { qty: 2, num: 1, name: 'Egg Roll', options: [], total: 550 },
+      { qty: 1, num: 'M2', name: 'Mini Combo Pollo al Ajillo', options: [{ label: 'Arroz frito y papas' }, { label: 'Extra ajo' }], total: 1125 },
+      { qty: 1, num: 18, name: 'Sopa Wonton', options: [{ label: 'Sin vegetal' }], total: 925 },
+      { qty: 2, num: 88, name: 'Refresco Lata', options: [{ label: 'Coca Cola' }], total: 370 },
+    ];
+    const subtotal = items.reduce((a, l) => a + l.total, 0); const tax = Math.round(subtotal * 0.07);
+    return {
+      number: 'PRUEBA-01', pickupType: 'asap', pickupAt: new Date(now + 15 * 60000).toISOString(), paidAt: new Date(now).toISOString(),
+      name: 'Cliente de Prueba', phone: '787-555-0123', items, notes: 'Por favor, servilletas extra.', subtotal, tax, total: subtotal + tax,
+    };
   }
 
   function testTicket({ ascii = false } = {}) {
@@ -176,5 +196,5 @@ window.KPrint = (() => {
     navigator.usb.addEventListener('connect', () => { reconnect(); });
   }
 
-  return { orderTicket, testTicket, print, choose, reconnect, status, onChange: (f) => listeners.add(f), supported };
+  return { orderTicket, testTicket, sampleOrder, print, choose, reconnect, status, onChange: (f) => listeners.add(f), supported };
 })();
